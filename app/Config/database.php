@@ -1,14 +1,25 @@
 <?php
 class DATABASE_CONFIG {
-
-	public $default = array(
-		'datasource' => 'Database/Mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'database_name',
-		'prefix' => '',
-		//'encoding' => 'utf8',
-	);
+    
+    public $default = array(
+        'datasource' => 'Database/Mysql',
+        'persistent' => false,
+        'host' => 'localhost',
+        'login' => 'root',
+        'password' => '',
+        'database' => 'seguridad',
+        'prefix' => '',
+        'encoding' => 'utf8',
+        'unix_socket' => '/tmp/mysql.sock',
+    );
+    /*
+     public $default = array(
+     'datasource' => 'Database/Postgres',
+     'persistent' => false,
+     'host' => 'localhost',
+     'login' => 'postgres',
+     'password' => 'admin',
+     'database' => 'seguridad',
+     );
+     */
 }

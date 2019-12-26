@@ -56,14 +56,23 @@ class AppController extends Controller {
     public $helpers = array('Html', 'Form', 'Session');
 
 	public $a_estados;
-    function beforeFilter(){
+	function beforeFilter(){
+	    $this->response->header('Access-Control-Allow-Origin','*');
+	    $this->response->header('Access-Control-Allow-Credentials','true');
+	    $this->response->header('Access-Control-Allow-Methods', '*');
+	    $this->response->header('Access-Control-Allow-Headers', '*');
+	    $this->response->header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+	    $this->response->header('Content-Type', 'application/json');
+	    $this->response->header('Access-Control-Max-Age','3600');
+	    
         $this->paginate = array('limit'=>20);
 		$this->a_estados = array('A'=>'Activo','D'=>'Desactivo');
 		$this->set('a_estados',$this->a_estados);
 		
 		$this->Auth->unauthorizedRedirect=FALSE ;
 		$this->Auth->authError=__('You are not authorized to access that location.');		
-		$this->Auth->allow('login','logout','display','index');
+		$this->Auth->allow('login','logout','display','index','edit','view','add','delete');
+		//$this->Auth->allow('*');
 		
 		$this->__checkAuth();				
     }
