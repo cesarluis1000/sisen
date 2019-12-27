@@ -71,7 +71,7 @@ class AppController extends Controller {
 		
 		$this->Auth->unauthorizedRedirect=FALSE ;
 		$this->Auth->authError=__('You are not authorized to access that location.');		
-		$this->Auth->allow('login','logout','display','index','edit','view','add','delete');
+		$this->Auth->allow('login','logout','display','index','edit','view','view2','add','delete');
 		//$this->Auth->allow('*');
 		
 		$this->__checkAuth();				

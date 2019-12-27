@@ -28,6 +28,15 @@ public $components = array('RequestHandler');
             '_serialize' => array('Persona')
         ));
     }
+    
+    public function view2() {
+        $Personas = $this->Persona->find('all');
+        $Personas = Set::extract($Personas, '{n}.Persona');
+        $this->set(array(
+            'Personas' => $Personas,
+            '_serialize' => array('Personas')
+        ));
+    }
 
     public function add() {
         //pr($this->request->data);
@@ -58,7 +67,7 @@ public $components = array('RequestHandler');
 
     public function delete($id) {
         if ($this->Persona->delete($id)) {
-            $message = 'Deleted';
+            $message = 'Eliminado';
         } else {
             $message = 'Error';
         }

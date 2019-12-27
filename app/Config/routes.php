@@ -37,8 +37,49 @@
  */
 	CakePlugin::routes();
 
+	//Router::mapResources('personas');
+	//Router::parseExtensions();
+	
 	Router::mapResources('personas');
-	Router::parseExtensions();
+	Router::parseExtensions('json');
+	Router::resourceMap(array(
+	    array('action' => 'index',     'method' => 'GET',      'id' => false),
+	    array('action' => 'view',      'method' => 'GET',      'id' => true),
+	    array('action' => 'add',       'method' => 'POST',     'id' => false),
+	    array('action' => 'edit',      'method' => 'PUT',      'id' => true),
+	    array('action' => 'delete',    'method' => 'DELETE',   'id' => true),
+	    array('action' => 'update',    'method' => 'POST',     'id' => true)
+	));
+	
+	Router::connect(
+	    "/:controller",
+	    array("action" => "add", "[method]" =>'POST'),
+	    array("id" => "[0-9]+")
+	    );
+	
+	Router::connect(
+	    "/:controller/:id",
+	    array("action" => "view", "[method]" =>'GET'),
+	    array("id" => "[0-9]+")
+	    );
+	
+	Router::connect(
+	    "/:controller/:id",
+	    array("action" => "view2", "[method]" =>'OPTIONS'),
+	    array("id" => "[0-9]+")
+	    );
+	
+	Router::connect(
+	    "/:controller/:id",
+	    array("action" => "delete", "[method]" =>'DELETE'),
+	    array("id" => "[0-9]+")
+	    );
+	
+	Router::connect(
+	    "/:controller/:id",
+	    array("action" => "edit", "[method]" =>'PUT'),
+	    array("id" => "[0-9]+")
+	    );
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
  * the built-in default routes.
