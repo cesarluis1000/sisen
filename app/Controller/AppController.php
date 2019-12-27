@@ -61,7 +61,7 @@ class AppController extends Controller {
 	    $this->response->header('Access-Control-Allow-Credentials','true');
 	    $this->response->header('Access-Control-Allow-Methods', '*');
 	    $this->response->header('Access-Control-Allow-Headers', '*');
-	    $this->response->header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+	    $this->response->header('Allow', 'GET, POST, PUT, DELETE, OPTIONS');
 	    $this->response->header('Content-Type', 'application/json');
 	    $this->response->header('Access-Control-Max-Age','3600');
 	    
