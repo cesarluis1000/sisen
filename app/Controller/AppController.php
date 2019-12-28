@@ -56,6 +56,7 @@ class AppController extends Controller {
     public $helpers = array('Html', 'Form', 'Session');
 
 	public $a_estados;
+	
 	function beforeFilter(){
 	    $this->response->header('Access-Control-Allow-Origin','*');
 	    $this->response->header('Access-Control-Allow-Credentials','true');
@@ -70,12 +71,24 @@ class AppController extends Controller {
 		$this->set('a_estados',$this->a_estados);
 		
 		$this->Auth->unauthorizedRedirect=FALSE ;
-		$this->Auth->authError=__('You are not authorized to access that location.');		
-		$this->Auth->allow('login','logout','display','index','edit','view','view2','add','delete');
-		//$this->Auth->allow('*');
+		$this->Auth->authError=__('You are not authorized to access that location.');
+		
+		$allow = array('login','logout','display');
+		if(in_array($this->params['controller'],array('personas'))){
+		    $allow = array_merge($allow,array('index','edit','view','add','delete','options'));		    		    
+		}
+		$this->Auth->allow($allow);
 		
 		$this->__checkAuth();				
-    }
+	}
+	
+	public function options(){	    
+	    $this->set(array(
+	        'options' => array(),
+	        '_serialize' => array('options')
+	    ));
+	}
+	
 
     private function __checkAuth() {
         $currentUser = $this->Auth->user();

@@ -138,7 +138,7 @@ Configure::write('Config.language', 'spa');
  * If not set defaults to 'js/'
  */
 	//Configure::write('App.jsBaseUrl', 'js/');
-
+	
 /**
  * Uncomment the define below to use CakePHP prefix routes.
  *

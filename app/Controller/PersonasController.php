@@ -9,11 +9,11 @@ App::uses('AppController', 'Controller');
 class PersonasController extends AppController {
 
 public $components = array('RequestHandler');
-
     
     public function index() {
         $Personas = $this->Persona->find('all');
         $Personas = Set::extract($Personas, '{n}.Persona');
+        //pr($Personas);
         $this->set(array(
             'Personas' => $Personas,
             '_serialize' => array('Personas')
@@ -29,15 +29,6 @@ public $components = array('RequestHandler');
         ));
     }
     
-    public function view2() {
-        $Personas = $this->Persona->find('all');
-        $Personas = Set::extract($Personas, '{n}.Persona');
-        $this->set(array(
-            'Personas' => $Personas,
-            '_serialize' => array('Personas')
-        ));
-    }
-
     public function add() {
         //pr($this->request->data);
         $this->Persona->create();
