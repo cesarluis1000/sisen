@@ -25,7 +25,7 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+Router::connect('/', array('controller' => 'users', 'action' => 'login'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
@@ -40,14 +40,26 @@
 	//Router::mapResources('personas');
 	//Router::parseExtensions();
 	
-	Router::mapResources('personas');
+	//Router::mapResources('personas');
+	//Router::parseExtensions();
+	
+	Router::resourceMap( array(
+	    array( 'action' => 'login2', 'method' => 'PATCH', 'id' => false),
+	    array( 'action' => 'index2', 'method' => 'GET', 'id' => false ),
+	    array( 'action' => 'view2', 'method' => 'GET', 'id' => true ),
+	    array( 'action' => 'add2', 'method' => 'POST', 'id' => false),
+	    array( 'action' => 'edit2', 'method' => 'PUT', 'id' => true ),
+	    array( 'action' => 'delete2', 'method' => 'DELETE', 'id' => true ),
+	) );
+	Router::mapResources(array('personas', 'notes'), array('prefix'=>'api'));
 	Router::parseExtensions();
 	
-	Router::connect(
+	/*Router::connect(
 	    "/:controller/:id",
 	    array("action" => "options", "[method]" =>'OPTIONS'),
 	    array("id" => "[0-9]+")
 	    );
+	*/
 	
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
