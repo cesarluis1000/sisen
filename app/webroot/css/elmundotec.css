@@ -19,10 +19,11 @@ html, body {
 	padding-bottom: 0px;
 }
 #header .bg-primary {
-    padding: 15px;
+    padding: 5px;
+    background-color: #001DD0;	
 }
 #titulo {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 0px;
 }	
 /**/

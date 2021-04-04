@@ -21,7 +21,14 @@
 	<div id="container">
 	
 		<div id="header" class="page-header">		
-			<h1 id="titulo" class="bg-primary"><?php echo 'SEGURIDAD ACL'; ?></h1>
+			<h1 id="titulo" class="bg-primary">
+			<?php    	
+        	echo $this->Html->link(
+        	    $this->Html->image('banner.png', ['alt' => 'banner']),
+        	    '/?n='.time(),['escapeTitle' => false, 'title' =>'sisen']
+        	    );
+        	?>
+        	</h1>
 			<?php echo $this->element('logeado'); ?>
 		</div>
 		
@@ -45,13 +52,13 @@
 				</div>
 			<?php endif; ?>
 		</div>
-		
+		<!-- 
 		<div id="footer" class="alert alert-info text-right">			
 			<h4>
-				<?php echo 'Desarrollado por el Grupo Hrnos Ramos'; ?>
+				<?php echo '&nbsp'; ?>
 			</h4>
 		</div>
-		
+		 -->
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<?php echo $this->Html->script('jquery-3.2.1.min.js'); ?>	
