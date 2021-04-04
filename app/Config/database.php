@@ -12,14 +12,4 @@ class DATABASE_CONFIG {
         'encoding' => 'utf8',
         'unix_socket' => '/tmp/mysql.sock',
     );
-    /*
-     public $default = array(
-     'datasource' => 'Database/Postgres',
-     'persistent' => false,
-     'host' => 'localhost',
-     'login' => 'postgres',
-     'password' => 'admin',
-     'database' => 'seguridad',
-     );
-     */
 }
