@@ -7,7 +7,7 @@ class DATABASE_CONFIG {
         'host' => 'localhost',
         'login' => 'root',
         'password' => '',
-        'database' => 'seguridad',
+        'database' => 'sisen',
         'prefix' => '',
         'encoding' => 'utf8',
         'unix_socket' => '/tmp/mysql.sock',
