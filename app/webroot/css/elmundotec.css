@@ -15,7 +15,7 @@ html, body {
 }
 /*Header elmundotec*/
 #header  {
-	margin: 5px 0 5px;
+	margin: 0px;
 	padding-bottom: 0px;
 }
 #header .bg-primary {
@@ -23,7 +23,7 @@ html, body {
     background-color: #001DD0;	
 }
 #titulo {
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 0px;
 }	
 /**/
