@@ -12,4 +12,5 @@ class DATABASE_CONFIG {
         'encoding' => 'utf8',
         'unix_socket' => '/tmp/mysql.sock',
     );
+    
 }
