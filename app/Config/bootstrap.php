@@ -58,8 +58,8 @@ Cache::config('default', array('engine' => 'File'));
  * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
  */
  
-Inflector::rules('singular', array('rules' => array(), 'irregular' => array('microredes'=>'microred'), 'uninflected' => array()));
-Inflector::rules('plural', array('rules' => array(), 'irregular' => array('microred'=>'microredes'), 'uninflected' => array()));
+Inflector::rules('singular', array('rules' => array(), 'irregular' => array('opciones'=>'opcion'), 'uninflected' => array()));
+Inflector::rules('plural', array('rules' => array(), 'irregular' => array('opcion'=>'opciones'), 'uninflected' => array()));
  
 CakePlugin::load('DebugKit');
 CakePlugin::load('AclExtras');
