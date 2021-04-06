@@ -54,18 +54,19 @@ class OpcionesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($preguntaId = null) {
 		if ($this->request->is('post')) {
 			$this->Opcion->create();
 			if ($this->Opcion->save($this->request->data)) {
 				$this->Flash->success(__('The opcion has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$preguntaId = $this->request->data['Opcion']['pregunta_id'];
+				return $this->redirect(array('controller' => 'Preguntas','action' => 'view',$preguntaId));
 			} else {
 				$this->Flash->error(__('The opcion could not be saved. Please, try again.'));
 			}
 		}
-		$preguntas = $this->Opcion->Preguntum->find('list');
-		$this->set(compact('preguntas'));
+		$preguntas = $this->Opcion->Pregunta->find('list');
+		$this->set(compact('preguntaId', 'preguntas'));
 	}
 
 /**
@@ -90,7 +91,7 @@ class OpcionesController extends AppController {
 			$options = array('conditions' => array('Opcion.' . $this->Opcion->primaryKey => $id));
 			$this->request->data = $this->Opcion->find('first', $options);
 		}
-		$preguntas = $this->Opcion->Preguntum->find('list');
+		$preguntas = $this->Opcion->Pregunta->find('list');
 		$this->set(compact('preguntas'));
 	}
 

@@ -30,6 +30,7 @@
 			<?php echo h($encuestado['Encuestado']['correo']); ?>
 			&nbsp;
 		</dd>
+		<!-- 
 		<dt><?php echo __('Password'); ?></dt>
 		<dd>
 			<?php echo h($encuestado['Encuestado']['password']); ?>
@@ -39,7 +40,8 @@
 		<dd>
 			<?php echo h($encuestado['Encuestado']['hash']); ?>
 			&nbsp;
-		</dd>
+		</dd> 
+		-->
 		<dt><?php echo __('Encuesta'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($encuestado['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $encuestado['Encuesta']['id'])); ?>
@@ -47,7 +49,7 @@
 		</dd>
 		<dt><?php echo __('Estado'); ?></dt>
 		<dd>
-			<?php echo h($encuestado['Encuestado']['estado']); ?>
+			<?php echo h($a_estados[$encuestado['Encuestado']['estado']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Creador'); ?></dt>

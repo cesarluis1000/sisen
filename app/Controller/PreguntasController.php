@@ -46,7 +46,12 @@ class PreguntasController extends AppController {
 			throw new NotFoundException(__('Invalid pregunta'));
 		}
 		$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
-		$this->set('pregunta', $this->Pregunta->find('first', $options));
+		$pregunta = $this->Pregunta->find('first', $options);
+		
+		$conditions = array('conditions' => array('pregunta_id' => $id),
+		    'recursive' => 0);
+		$opciones = $this->Pregunta->Opcion->find('all',$conditions);
+		$this->set(compact('pregunta', 'opciones'));
 	}
 
 /**
@@ -54,18 +59,19 @@ class PreguntasController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($encuestaId = null) {
 		if ($this->request->is('post')) {
 			$this->Pregunta->create();
 			if ($this->Pregunta->save($this->request->data)) {
 				$this->Flash->success(__('The pregunta has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$encuestaId = $this->request->data['Pregunta']['encuesta_id'];
+				return $this->redirect(array('controller' => 'Encuestas','action' => 'view',$encuestaId));
 			} else {
 				$this->Flash->error(__('The pregunta could not be saved. Please, try again.'));
 			}
 		}
-		$encuestas = $this->Pregunta->Encuestum->find('list');
-		$this->set(compact('encuestas'));
+		$encuestas = $this->Pregunta->Encuesta->find('list');
+		$this->set(compact('encuestaId', 'encuestas'));
 	}
 
 /**
@@ -81,8 +87,9 @@ class PreguntasController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Pregunta->save($this->request->data)) {
-				$this->Flash->success(__('The pregunta has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+			    $this->Flash->success(__('The pregunta has been saved.'));
+			    $encuestaId = $this->request->data['Pregunta']['encuesta_id'];
+			    return $this->redirect(array('controller' => 'Encuestas','action' => 'view',$encuestaId));
 			} else {
 				$this->Flash->error(__('The pregunta could not be saved. Please, try again.'));
 			}
@@ -90,7 +97,7 @@ class PreguntasController extends AppController {
 			$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
 			$this->request->data = $this->Pregunta->find('first', $options);
 		}
-		$encuestas = $this->Pregunta->Encuestum->find('list');
+		$encuestas = $this->Pregunta->Encuesta->find('list');
 		$this->set(compact('encuestas'));
 	}
 
@@ -107,11 +114,18 @@ class PreguntasController extends AppController {
 			throw new NotFoundException(__('Invalid pregunta'));
 		}
 		$this->request->allowMethod('post', 'delete');
-		if ($this->Pregunta->delete()) {
+		
+		$this->Pregunta->recursive = 0;
+		$this->request->data = $this->Pregunta->findById($id);
+		$this->request->data['Pregunta']['estado'] = 'D';
+		
+		if ($this->Pregunta->save($this->request->data)) {
 			$this->Flash->success(__('The pregunta has been deleted.'));
 		} else {
 			$this->Flash->error(__('The pregunta could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		//return $this->redirect(array('action' => 'index'));
+		$encuestaId = $this->request->data['Pregunta']['encuesta_id'];
+		return $this->redirect(array('controller' => 'Encuestas','action' => 'view',$encuestaId));
 	}
 }

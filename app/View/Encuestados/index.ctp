@@ -39,16 +39,11 @@
 			<th><?php echo $this->Paginator->sort('nombres'); ?></th>
 			<th><?php echo $this->Paginator->sort('app'); ?></th>
 			<th><?php echo $this->Paginator->sort('apm'); ?></th>
-			<th><?php echo $this->Paginator->sort('dni'); ?></th>
 			<th><?php echo $this->Paginator->sort('correo'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-			<th><?php echo $this->Paginator->sort('hash'); ?></th>
 			<th><?php echo $this->Paginator->sort('encuesta_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('estado'); ?></th>
 			<th><?php echo $this->Paginator->sort('creador'); ?></th>
 			<th><?php echo $this->Paginator->sort('creado'); ?></th>
-			<th><?php echo $this->Paginator->sort('modificador'); ?></th>
-			<th><?php echo $this->Paginator->sort('modificado'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -59,18 +54,13 @@
 		<td><?php echo h($encuestado['Encuestado']['nombres']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['app']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['apm']); ?>&nbsp;</td>
-		<td><?php echo h($encuestado['Encuestado']['dni']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['correo']); ?>&nbsp;</td>
-		<td><?php echo h($encuestado['Encuestado']['password']); ?>&nbsp;</td>
-		<td><?php echo h($encuestado['Encuestado']['hash']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($encuestado['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $encuestado['Encuesta']['id'])); ?>
 		</td>
-		<td><?php echo h($encuestado['Encuestado']['estado']); ?>&nbsp;</td>
+		<td><?php echo h($a_estados[$encuestado['Encuestado']['estado']]); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['creado']); ?>&nbsp;</td>
-		<td><?php echo h($encuestado['Encuestado']['modificador']); ?>&nbsp;</td>
-		<td><?php echo h($encuestado['Encuestado']['modificado']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('action' => 'view', $encuestado['Encuestado']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('action' => 'edit', $encuestado['Encuestado']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>

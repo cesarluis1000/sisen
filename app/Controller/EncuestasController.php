@@ -46,7 +46,14 @@ class EncuestasController extends AppController {
 			throw new NotFoundException(__('Invalid encuesta'));
 		}
 		$options = array('conditions' => array('Encuesta.' . $this->Encuesta->primaryKey => $id));
-		$this->set('encuesta', $this->Encuesta->find('first', $options));
+		$encuesta = $this->Encuesta->find('first', $options);
+		
+		$conditions = array('conditions' => array('encuesta_id' => $id),
+		                      'recursive' => 0);
+		$preguntas = $this->Encuesta->Pregunta->find('all',$conditions);
+		$encuestados = $this->Encuesta->Encuestado->find('all',$conditions);
+		//pr($encuestados);
+		$this->set(compact('encuesta', 'preguntas', 'encuestados'));
 	}
 
 /**
@@ -56,10 +63,13 @@ class EncuestasController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+//		    pr($this->request->data);
+//		    exit;
 			$this->Encuesta->create();
 			if ($this->Encuesta->save($this->request->data)) {
 				$this->Flash->success(__('The encuesta has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$encuestaId = $this->Encuesta->getInsertID();
+				return $this->redirect(array('action' => 'view',$encuestaId));
 			} else {
 				$this->Flash->error(__('The encuesta could not be saved. Please, try again.'));
 			}
@@ -103,7 +113,12 @@ class EncuestasController extends AppController {
 			throw new NotFoundException(__('Invalid encuesta'));
 		}
 		$this->request->allowMethod('post', 'delete');
-		if ($this->Encuesta->delete()) {
+		
+		$this->Encuesta->recursive = 0;
+		$this->request->data = $this->Encuesta->findById($id);
+		$this->request->data['Encuesta']['estado'] = 'D';
+		
+		if ($this->Encuesta->save($this->request->data)) {
 			$this->Flash->success(__('The encuesta has been deleted.'));
 		} else {
 			$this->Flash->error(__('The encuesta could not be deleted. Please, try again.'));

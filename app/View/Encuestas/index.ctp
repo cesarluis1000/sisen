@@ -39,12 +39,9 @@
 			<th><?php echo $this->Paginator->sort('nombre'); ?></th>
 			<th><?php echo $this->Paginator->sort('fecha_inicio'); ?></th>
 			<th><?php echo $this->Paginator->sort('fecha_fin'); ?></th>
-			<th><?php echo $this->Paginator->sort('enlace_zoom'); ?></th>
 			<th><?php echo $this->Paginator->sort('estado'); ?></th>
 			<th><?php echo $this->Paginator->sort('creador'); ?></th>
 			<th><?php echo $this->Paginator->sort('creado'); ?></th>
-			<th><?php echo $this->Paginator->sort('modificador'); ?></th>
-			<th><?php echo $this->Paginator->sort('modificado'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -55,12 +52,9 @@
 		<td><?php echo h($encuesta['Encuesta']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($encuesta['Encuesta']['fecha_inicio']); ?>&nbsp;</td>
 		<td><?php echo h($encuesta['Encuesta']['fecha_fin']); ?>&nbsp;</td>
-		<td><?php echo h($encuesta['Encuesta']['enlace_zoom']); ?>&nbsp;</td>
-		<td><?php echo h($encuesta['Encuesta']['estado']); ?>&nbsp;</td>
+		<td><?php echo h($a_estados[$encuesta['Encuesta']['estado']]); ?>&nbsp;</td>
 		<td><?php echo h($encuesta['Encuesta']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($encuesta['Encuesta']['creado']); ?>&nbsp;</td>
-		<td><?php echo h($encuesta['Encuesta']['modificador']); ?>&nbsp;</td>
-		<td><?php echo h($encuesta['Encuesta']['modificado']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('action' => 'view', $encuesta['Encuesta']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('action' => 'edit', $encuesta['Encuesta']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>

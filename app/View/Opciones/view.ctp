@@ -17,7 +17,7 @@
 		</dd>
 		<dt><?php echo __('Estado'); ?></dt>
 		<dd>
-			<?php echo h($opcion['Opcion']['estado']); ?>
+			<?php echo h($a_estados[$opcion['Opcion']['estado']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Creador'); ?></dt>

@@ -4,11 +4,13 @@
 	<meta charset="UTF-8">
 	<!-- <?php echo $this->Html->charset(); ?> -->
 	<html lang="es">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
-		<?php echo $this->fetch('title'); ?>
+		<?php echo "Cooperativa San Francisco"; ?>
 	</title>	
-	<meta name="description" content="Compra por Internet en elmundotec.com de forma segura y fácil, encontrarás miles de productos y OFERTAS increíbles. Envíos a todo el PERÚ." />
-	<meta name="keywords" content="elmundotec, comprar online, elmundotec.com, comprar por internet, comprar en peru, comprar online en peru, comprar por internet en peru" />
+	<meta name="description" content="Somos una organización sin fines de lucro que brinda servicios financieros y cooperativos a sus asociados" />
+	<meta name="keywords" content="Huanuco, cooperativa, orden de pago, fondo mortuorio, credito pyme" />
 	
 	<?php
 		echo $this->Html->meta('icon');
