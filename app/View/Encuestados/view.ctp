@@ -1,23 +1,27 @@
-<h2><?php echo __('Encuestado'); ?></h2>
+<style>
+<!--
+label {
+    font-weight: normal !important;
+}
+.Preguntalista li {
+    font-size: 14px;
+    font-weight: bold;	
+}
+.opcionlista {
+	padding-left: 10px;
+}
+.opcionlista li {
+    list-style: none;
+}
+-->
+</style>
+<fieldset>
+	<legend><?php echo __('Encuestado'); ?></legend>
+
 	<dl class="dl-horizontal">
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Nombres'); ?></dt>
 		<dd>
-			<?php echo h($encuestado['Encuestado']['nombres']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('App'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['app']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Apm'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['apm']); ?>
+			<?php echo h($encuestado['Encuestado']['nombres']).' '.h($encuestado['Encuestado']['app']).' '.h($encuestado['Encuestado']['apm']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Dni'); ?></dt>
@@ -30,23 +34,12 @@
 			<?php echo h($encuestado['Encuestado']['correo']); ?>
 			&nbsp;
 		</dd>
-		<!-- 
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['password']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Hash'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['hash']); ?>
-			&nbsp;
-		</dd> 
-		-->
 		<dt><?php echo __('Encuesta'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($encuestado['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $encuestado['Encuesta']['id'])); ?>
 			&nbsp;
 		</dd>
+		<!-- 
 		<dt><?php echo __('Estado'); ?></dt>
 		<dd>
 			<?php echo h($a_estados[$encuestado['Encuestado']['estado']]); ?>
@@ -71,5 +64,36 @@
 		<dd>
 			<?php echo h($encuestado['Encuestado']['modificado']); ?>
 			&nbsp;
-		</dd>
+		</dd> -->
 	</dl>
+	
+	<?php echo $this->Form->create('Respuesta', array('class' => 'form-horizontal',
+		'inputDefaults'=>array('div' => array('class' => 'form-group'),'between' => '<div class="col-sm-6">','after' => '</div>','class'=>'form-control input-xs','error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline'))))); ?>
+	
+	<ol class="Preguntalista">
+	<?php foreach ($preguntas as $i => $pregunta): ?>
+		<li>
+			<?php echo h($pregunta['Pregunta']['nombre']); ?>
+			<?php if (!empty($pregunta['Opcion'])): ?>
+    			<ol class="opcionlista">
+    				<?php foreach ($pregunta['Opcion'] as $opcion): ?>
+                      	<li>
+                      		<?php echo $this->Form->input($i.'.Respuesta.encuestado_id',array('type' => 'hidden','value'=>$encuestado['Encuestado']['id'])); ?>
+                      		<input type="radio" class="form-check-input" name="data[<?php echo $i ?>][Respuesta][opcion_id]"  disabled='disabled'
+                      				value="<?php echo $opcion['id'] ?>" id="RespuestaOpcionId<?php echo $opcion['id'] ?>" <?php echo $opcion['checked'] ?> >
+                      		<label for="RespuestaOpcionId<?php echo $opcion['id'] ?>"><?php echo $opcion['nombre'] ?></label>
+                      	</li>
+    				<?php endforeach; ?>
+                </ol>	
+			<?php endif; ?>
+		</li>
+	<?php endforeach; ?>
+	</ol>
+	
+	<div class="form-group">
+		<div class="col-sm-12">
+					<?php //echo $this->Form->button('Votar', array('type' => 'submit','class'=>'btn btn-success'));  ?>
+		</div>
+	</div>
+		<?php echo $this->Form->end(); ?>
+</fieldset>

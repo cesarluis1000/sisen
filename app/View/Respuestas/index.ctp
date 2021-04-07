@@ -41,8 +41,6 @@
 			<th><?php echo $this->Paginator->sort('estado'); ?></th>
 			<th><?php echo $this->Paginator->sort('creador'); ?></th>
 			<th><?php echo $this->Paginator->sort('creado'); ?></th>
-			<th><?php echo $this->Paginator->sort('modificador'); ?></th>
-			<th><?php echo $this->Paginator->sort('modificado'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -56,11 +54,9 @@
 		<td>
 			<?php echo $this->Html->link($respuesta['Encuestado']['app'], array('controller' => 'encuestados', 'action' => 'view', $respuesta['Encuestado']['id'])); ?>
 		</td>
-		<td><?php echo h($respuesta['Respuesta']['estado']); ?>&nbsp;</td>
+		<td><?php echo h($a_estados[$respuesta['Respuesta']['estado']]); ?>&nbsp;</td>
 		<td><?php echo h($respuesta['Respuesta']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($respuesta['Respuesta']['creado']); ?>&nbsp;</td>
-		<td><?php echo h($respuesta['Respuesta']['modificador']); ?>&nbsp;</td>
-		<td><?php echo h($respuesta['Respuesta']['modificado']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('action' => 'view', $respuesta['Respuesta']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('action' => 'edit', $respuesta['Respuesta']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>

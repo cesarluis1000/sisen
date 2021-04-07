@@ -44,22 +44,18 @@ label {
 	
 	<?php echo $this->Form->create('Respuesta', array('class' => 'form-horizontal',
 		'inputDefaults'=>array('div' => array('class' => 'form-group'),'between' => '<div class="col-sm-6">','after' => '</div>','class'=>'form-control input-xs','error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline'))))); ?>
-	<?php
-		echo $this->Form->input('encuestado_id',array('type' => 'hidden','value'=>$encuestado['Encuestado']['id']));
-		//echo $this->Form->input('opcion_id',array('label'=>array('class'=>'control-label col-sm-2')));
-		//echo $this->Form->input('estado',array('label'=>array('class'=>'control-label col-sm-2'),'options'=> $a_estados,'empty' => 'Seleccionar'));
-	?>
 	
 	<ol class="Preguntalista">
-	<?php foreach ($preguntas as $pregunta): ?>
+	<?php foreach ($preguntas as $i => $pregunta): ?>
 		<li>
 			<?php echo h($pregunta['Pregunta']['nombre']); ?>
 			<?php if (!empty($pregunta['Opcion'])): ?>
     			<ol class="opcionlista">
     				<?php foreach ($pregunta['Opcion'] as $opcion): ?>
                       	<li>
-                      		<input type="radio" class="form-check-input" name="data[<?php echo $pregunta['Pregunta']['id'] ?>][Opcion][id]"  value="<?php echo $opcion['id'] ?>" id="PreguntaId<?php echo $opcion['id'] ?>">
-                      		<label for="PreguntaId<?php echo $opcion['id'] ?>"><?php echo $opcion['nombre'] ?></label>
+                      		<?php echo $this->Form->input($i.'.Respuesta.encuestado_id',array('type' => 'hidden','value'=>$encuestado['Encuestado']['id'])); ?>
+                      		<input type="radio" class="form-check-input" name="data[<?php echo $i ?>][Respuesta][opcion_id]"  value="<?php echo $opcion['id'] ?>" id="RespuestaOpcionId<?php echo $opcion['id'] ?>">
+                      		<label for="RespuestaOpcionId<?php echo $opcion['id'] ?>"><?php echo $opcion['nombre'] ?></label>
                       	</li>
     				<?php endforeach; ?>
                 </ol>	

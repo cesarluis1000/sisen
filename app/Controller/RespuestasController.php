@@ -57,11 +57,11 @@ class RespuestasController extends AppController {
 	public function add($encuestadoId = null) {
 	    $this->loadModel('Pregunta');
 	    
-		if ($this->request->is('post')) {
+	    if ($this->request->is('post')) {	        
 			$this->Respuesta->create();
-			if ($this->Respuesta->save($this->request->data)) {
+			if ($this->Respuesta->saveMany($this->request->data)) {
 				$this->Flash->success(__('The respuesta has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
 			} else {
 				$this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
 			}
@@ -72,10 +72,8 @@ class RespuestasController extends AppController {
 		$encuestaId = $encuestado['Encuesta']['id'];
 		$options = array('conditions' => array('Pregunta.encuesta_id' => $encuestaId));
 		$preguntas = $this->Pregunta->find('all', $options);
-		//pr($preguntas);
 		
-		$opciones = $this->Respuesta->Opcion->find('list');		
-		$this->set(compact('opciones', 'encuestado', 'preguntas'));
+		$this->set(compact('encuestado', 'preguntas'));
 	}
 
 /**
