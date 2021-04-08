@@ -68,6 +68,7 @@
 	<tr>
 			<th><?php echo 'id'; ?></th>
 			<th><?php echo 'nombre'; ?></th>
+			<th><?php echo 'Nro Respuesta'; ?></th>
 			<th><?php echo 'estado'; ?></th>
 			<th><?php echo 'creador'; ?></th>
 			<th><?php echo 'creado'; ?></th>
@@ -78,6 +79,7 @@
 	<tr>
 		<td><?php echo h($pregunta['Pregunta']['id']); ?>&nbsp;</td>
 		<td><?php echo h($pregunta['Pregunta']['nombre']); ?>&nbsp;</td>
+		<td><?php echo h($a_nro_respuesta[$pregunta['Pregunta']['nro_respuesta']]); ?>&nbsp;</td>
 		<td><?php echo h($a_estados[$pregunta['Pregunta']['estado']]); ?>&nbsp;</td>
 		<td><?php echo h($pregunta['Pregunta']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($pregunta['Pregunta']['creado']); ?>&nbsp;</td>

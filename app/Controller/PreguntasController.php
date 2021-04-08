@@ -70,7 +70,9 @@ class PreguntasController extends AppController {
 				$this->Flash->error(__('The pregunta could not be saved. Please, try again.'));
 			}
 		}
-		$encuestas = $this->Pregunta->Encuesta->find('list');
+		
+		$options = empty($encuestaId)?array():array('conditions' => array('Encuesta.id' => $encuestaId));
+		$encuestas = $this->Pregunta->Encuesta->find('list', $options);
 		$this->set(compact('encuestaId', 'encuestas'));
 	}
 
@@ -82,6 +84,7 @@ class PreguntasController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+	    $encuestaId = null;
 		if (!$this->Pregunta->exists($id)) {
 			throw new NotFoundException(__('Invalid pregunta'));
 		}
@@ -96,8 +99,11 @@ class PreguntasController extends AppController {
 		} else {
 			$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
 			$this->request->data = $this->Pregunta->find('first', $options);
+			$encuestaId = $this->request->data['Pregunta']['encuesta_id'];
 		}
-		$encuestas = $this->Pregunta->Encuesta->find('list');
+		
+		$options = empty($encuestaId)?array():array('conditions' => array('Encuesta.id' => $encuestaId));
+		$encuestas = $this->Pregunta->Encuesta->find('list', $options);
 		$this->set(compact('encuestas'));
 	}
 

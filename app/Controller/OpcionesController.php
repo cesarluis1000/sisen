@@ -65,7 +65,9 @@ class OpcionesController extends AppController {
 				$this->Flash->error(__('The opcion could not be saved. Please, try again.'));
 			}
 		}
-		$preguntas = $this->Opcion->Pregunta->find('list');
+		
+		$options = empty($preguntaId)?array():array('conditions' => array('Pregunta.id' => $preguntaId));;
+		$preguntas = $this->Opcion->Pregunta->find('list', $options);
 		$this->set(compact('preguntaId', 'preguntas'));
 	}
 
@@ -77,6 +79,7 @@ class OpcionesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+	    $preguntaId = null;
 		if (!$this->Opcion->exists($id)) {
 			throw new NotFoundException(__('Invalid opcion'));
 		}
@@ -90,8 +93,10 @@ class OpcionesController extends AppController {
 		} else {
 			$options = array('conditions' => array('Opcion.' . $this->Opcion->primaryKey => $id));
 			$this->request->data = $this->Opcion->find('first', $options);
+			$preguntaId = $this->request->data['Opcion']['pregunta_id'];
 		}
-		$preguntas = $this->Opcion->Pregunta->find('list');
+		$options = empty($preguntaId)?array():array('conditions' => array('Pregunta.id' => $preguntaId));;
+		$preguntas = $this->Opcion->Pregunta->find('list', $options);
 		$this->set(compact('preguntas'));
 	}
 

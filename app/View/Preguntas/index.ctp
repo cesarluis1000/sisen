@@ -37,6 +37,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('nombre'); ?></th>
+			<th><?php echo $this->Paginator->sort('nro_respuesta'); ?></th>
 			<th><?php echo $this->Paginator->sort('encuesta_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('estado'); ?></th>
 			<th><?php echo $this->Paginator->sort('creador'); ?></th>
@@ -49,6 +50,7 @@
 	<tr>
 		<td><?php echo h($pregunta['Pregunta']['id']); ?>&nbsp;</td>
 		<td><?php echo h($pregunta['Pregunta']['nombre']); ?>&nbsp;</td>
+		<td><?php echo h($a_nro_respuesta[$pregunta['Pregunta']['nro_respuesta']]); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($pregunta['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $pregunta['Encuesta']['id'])); ?>
 		</td>

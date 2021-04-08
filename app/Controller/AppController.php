@@ -69,6 +69,8 @@ class AppController extends Controller {
         $this->paginate = array('limit'=>20);
 		$this->a_estados = array('A'=>'Activo','D'=>'Desactivo');
 		$this->set('a_estados',$this->a_estados);
+		$this->a_nro_respuesta = array('1'=>'Una','2'=>'Dos');
+		$this->set('a_nro_respuesta',$this->a_nro_respuesta);
 		
 		$this->Auth->unauthorizedRedirect=FALSE ;
 		$this->Auth->authError=__('You are not authorized to access that location.');

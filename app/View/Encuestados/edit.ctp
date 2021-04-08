@@ -8,6 +8,7 @@
 		echo $this->Form->input('app',array('label'=>array('class'=>'control-label col-sm-2')));
 		echo $this->Form->input('apm',array('label'=>array('class'=>'control-label col-sm-2')));
 		echo $this->Form->input('dni',array('label'=>array('class'=>'control-label col-sm-2')));
+		echo $this->Form->input('telefono',array('label'=>array('class'=>'control-label col-sm-2')));
 		echo $this->Form->input('correo',array('label'=>array('class'=>'control-label col-sm-2')));
 		echo $this->Form->input('encuesta_id',array('label'=>array('class'=>'control-label col-sm-2')));
 		echo $this->Form->input('estado',array('label'=>array('class'=>'control-label col-sm-2'),'options'=> $a_estados,'empty' => 'Seleccionar'));

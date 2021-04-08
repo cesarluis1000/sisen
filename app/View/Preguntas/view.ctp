@@ -10,6 +10,11 @@
 			<?php echo h($pregunta['Pregunta']['nombre']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Nro Respuesta'); ?></dt>
+		<dd>
+			<?php echo h($a_nro_respuesta[$pregunta['Pregunta']['nro_respuesta']]); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Encuesta'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($pregunta['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $pregunta['Encuesta']['id'])); ?>
