@@ -129,7 +129,7 @@ CREATE TABLE `cake_sessions` (
 
 LOCK TABLES `cake_sessions` WRITE;
 /*!40000 ALTER TABLE `cake_sessions` DISABLE KEYS */;
-INSERT INTO `cake_sessions` VALUES ('i72qa9g3t91gtkj2u03hrbe2dc','Config|a:3:{s:9:\"userAgent\";s:32:\"4a0447ac2d6bbb6f4f0ba62ba0cd831a\";s:4:\"time\";i:1617611523;s:9:\"countdown\";i:10;}Message|a:1:{s:4:\"auth\";a:4:{s:7:\"message\";s:51:\"No está autorizado para acceder a esta aplicación\";s:3:\"key\";s:4:\"auth\";s:7:\"element\";s:13:\"Flash/default\";s:6:\"params\";a:0:{}}}Auth|a:1:{s:4:\"User\";a:13:{s:2:\"id\";s:1:\"1\";s:7:\"nombres\";N;s:3:\"app\";N;s:3:\"apm\";N;s:6:\"correo\";N;s:8:\"username\";s:6:\"cramos\";s:8:\"group_id\";s:1:\"1\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:24:19\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;s:5:\"Group\";a:7:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:13:\"Administrador\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:19:00\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;}}}',1617611523);
+INSERT INTO `cake_sessions` VALUES ('c2csma69frs8g5r2h37ec5ic9r','Config|a:3:{s:9:\"userAgent\";s:32:\"4a0447ac2d6bbb6f4f0ba62ba0cd831a\";s:4:\"time\";i:1617853677;s:9:\"countdown\";i:10;}Message|a:1:{s:4:\"auth\";a:4:{s:7:\"message\";s:51:\"No está autorizado para acceder a esta aplicación\";s:3:\"key\";s:4:\"auth\";s:7:\"element\";s:13:\"Flash/default\";s:6:\"params\";a:0:{}}}Auth|a:1:{s:4:\"User\";a:13:{s:2:\"id\";s:1:\"1\";s:7:\"nombres\";N;s:3:\"app\";N;s:3:\"apm\";N;s:6:\"correo\";N;s:8:\"username\";s:6:\"cramos\";s:8:\"group_id\";s:1:\"1\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:24:19\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;s:5:\"Group\";a:7:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:13:\"Administrador\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:19:00\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;}}}',1617853677);
 /*!40000 ALTER TABLE `cake_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,8 @@ CREATE TABLE `encuestados` (
   `nombres` varchar(255) COLLATE utf8_bin NOT NULL,
   `app` varchar(255) COLLATE utf8_bin NOT NULL,
   `apm` varchar(255) COLLATE utf8_bin NOT NULL,
-  `dni` int(11) DEFAULT NULL,
+  `dni` int(8) NOT NULL,
+  `telefono` int(9) DEFAULT NULL,
   `correo` varchar(255) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `hash` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -158,7 +159,7 @@ CREATE TABLE `encuestados` (
   PRIMARY KEY (`id`),
   KEY `fk_encuestados_encuestas1_idx` (`encuesta_id`),
   CONSTRAINT `fk_encuestados_encuestas1` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,6 +168,7 @@ CREATE TABLE `encuestados` (
 
 LOCK TABLES `encuestados` WRITE;
 /*!40000 ALTER TABLE `encuestados` DISABLE KEYS */;
+INSERT INTO `encuestados` VALUES (1,'Cesar','Ramos','Cueva',42684024,NULL,'cesarluis1000@hotmail.com',NULL,NULL,1,'A','cramos','2021-04-06 01:31:44','cramos','2021-04-06 01:49:25'),(2,'Silvia','Medrano','Pulido',42684036,NULL,'silvia@gmail.com',NULL,NULL,1,'A','cramos','2021-04-06 01:50:25','cramos','2021-04-06 02:17:20');
 /*!40000 ALTER TABLE `encuestados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +191,7 @@ CREATE TABLE `encuestas` (
   `modificador` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `modificado` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,6 +200,7 @@ CREATE TABLE `encuestas` (
 
 LOCK TABLES `encuestas` WRITE;
 /*!40000 ALTER TABLE `encuestas` DISABLE KEYS */;
+INSERT INTO `encuestas` VALUES (1,'Elecciones generales 2021','2021-04-05 17:34:30','2021-04-05 17:34:33','https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09','A','cramos','2021-04-05 17:34:39',NULL,NULL),(2,'Elecciones generales 2022','2021-04-05 20:22:38','2021-04-05 20:22:40','https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09','A','cramos','2021-04-05 20:35:07',NULL,NULL),(3,'Elecciones generales 2023','2021-04-05 21:22:16','2021-04-05 21:22:19','','A','cramos','2021-04-05 21:22:29',NULL,NULL);
 /*!40000 ALTER TABLE `encuestas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +257,7 @@ CREATE TABLE `menus` (
   KEY `fk_menus_arod1_idx` (`aro_id`) USING BTREE,
   CONSTRAINT `fk_menus_acos1` FOREIGN KEY (`aco_id`) REFERENCES `acos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_menus_aros1` FOREIGN KEY (`aro_id`) REFERENCES `aros` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +266,7 @@ CREATE TABLE `menus` (
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
-INSERT INTO `menus` VALUES (1,'Permisos',NULL,1,12,1,NULL,NULL,NULL,NULL,NULL),(2,'Grupos',1,2,3,1,9,NULL,NULL,NULL,NULL),(3,'Usuarios',1,4,5,1,49,NULL,NULL,NULL,NULL),(4,'Aplicaciones',1,6,7,1,64,NULL,NULL,NULL,NULL),(5,'Accesos',1,8,9,1,63,NULL,NULL,NULL,NULL),(10,'Permisos',NULL,13,14,2,NULL,NULL,NULL,NULL,NULL),(14,'Menu',1,10,11,1,74,NULL,NULL,NULL,NULL),(15,'Aplicaciones',NULL,15,26,1,NULL,NULL,NULL,NULL,NULL),(16,'Encuestas',15,16,17,1,82,NULL,NULL,NULL,NULL),(17,'Preguntas',15,18,19,1,88,NULL,NULL,NULL,NULL),(18,'Opciones',15,20,21,1,94,NULL,NULL,NULL,NULL),(19,'Respuestas',15,22,23,1,100,NULL,NULL,NULL,NULL),(20,'Encuestados',15,24,25,1,106,NULL,NULL,NULL,NULL);
+INSERT INTO `menus` VALUES (1,'Permisos',NULL,1,12,1,NULL,NULL,NULL,NULL,NULL),(2,'Grupos',1,2,3,1,9,NULL,NULL,NULL,NULL),(3,'Usuarios',1,4,5,1,49,NULL,NULL,NULL,NULL),(4,'Aplicaciones',1,6,7,1,64,NULL,NULL,NULL,NULL),(5,'Accesos',1,8,9,1,63,NULL,NULL,NULL,NULL),(10,'Permisos',NULL,13,14,2,NULL,NULL,NULL,NULL,NULL),(14,'Menu',1,10,11,1,74,NULL,NULL,NULL,NULL),(15,'Aplicaciones',NULL,15,26,1,NULL,NULL,NULL,NULL,NULL),(16,'Encuestas',15,16,17,1,82,NULL,NULL,NULL,NULL),(17,'Preguntas',15,18,19,1,88,NULL,NULL,NULL,NULL),(18,'Opciones',15,20,21,1,94,NULL,NULL,NULL,NULL),(20,'Encuestados',15,22,23,1,106,NULL,NULL,NULL,NULL),(21,'Respuestas',15,24,25,1,100,'cramos','2021-04-07 03:52:22',NULL,NULL);
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +316,7 @@ CREATE TABLE `opciones` (
   PRIMARY KEY (`id`),
   KEY `fk_opciones_preguntas1_idx` (`pregunta_id`),
   CONSTRAINT `fk_opciones_preguntas1` FOREIGN KEY (`pregunta_id`) REFERENCES `preguntas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,6 +325,7 @@ CREATE TABLE `opciones` (
 
 LOCK TABLES `opciones` WRITE;
 /*!40000 ALTER TABLE `opciones` DISABLE KEYS */;
+INSERT INTO `opciones` VALUES (1,'Yonhy Lescano',1,'A','cramos','2021-04-05 23:28:18','cramos','2021-04-05 23:29:59'),(2,'George Forsyth',1,'A','cramos','2021-04-06 00:12:52',NULL,NULL),(3,'Keiko Fujimori',1,'A','cramos','2021-04-06 00:13:50',NULL,NULL),(4,'Veronika Mendoza',1,'A','cramos','2021-04-06 00:18:52',NULL,NULL),(5,'Yonhy Lescano',2,'A','cramos','2021-04-06 09:05:03',NULL,NULL),(6,'George Forsyth',2,'A','cramos','2021-04-06 09:05:13',NULL,NULL),(7,'Keiko Fujimori',2,'A','cramos','2021-04-06 09:05:22',NULL,NULL),(8,'Veronika Mendoza',2,'A','cramos','2021-04-06 09:05:29',NULL,NULL),(9,'Yonhy Lescano',3,'A','cramos','2021-04-06 09:06:21',NULL,NULL),(10,'George Forsyth',3,'A','cramos','2021-04-06 09:06:29',NULL,NULL),(11,'Keiko Fujimori',3,'A','cramos','2021-04-06 09:06:36',NULL,NULL),(12,'Yonhy Lescano',4,'A','cramos','2021-04-06 09:07:03',NULL,NULL),(13,'George Forsyth',4,'A','cramos','2021-04-06 09:07:08',NULL,NULL),(14,'Yonhy Lescano',5,'A','cramos','2021-04-07 20:04:51',NULL,NULL),(15,'George Forsyth',5,'A','cramos','2021-04-07 20:05:10',NULL,NULL),(16,'Keiko Fujimori',5,'A','cramos','2021-04-07 20:05:16',NULL,NULL),(17,'Veronika Mendoza',5,'A','cramos','2021-04-07 20:20:18',NULL,NULL),(18,'Yonhy Lescano',6,'A','cramos','2021-04-07 20:26:43',NULL,NULL),(19,'George Forsyth',6,'A','cramos','2021-04-07 20:26:49',NULL,NULL),(20,'Yonhy Lescano',7,'A','cramos','2021-04-07 20:27:44',NULL,NULL),(21,'George Forsyth',7,'A','cramos','2021-04-07 20:27:53',NULL,NULL),(22,'Keiko Fujimori',7,'A','cramos','2021-04-07 20:28:03',NULL,NULL),(23,'Veronika Mendoza',7,'A','cramos','2021-04-07 20:28:10',NULL,NULL);
 /*!40000 ALTER TABLE `opciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,6 +395,7 @@ CREATE TABLE `preguntas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) COLLATE utf8_bin NOT NULL,
   `encuesta_id` int(11) NOT NULL,
+  `nro_respuesta` int(2) NOT NULL DEFAULT 1,
   `estado` varchar(1) COLLATE utf8_bin NOT NULL DEFAULT 'A',
   `creador` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `creado` datetime DEFAULT NULL,
@@ -399,7 +404,7 @@ CREATE TABLE `preguntas` (
   PRIMARY KEY (`id`),
   KEY `fk_preguntas_encuestas1_idx` (`encuesta_id`),
   CONSTRAINT `fk_preguntas_encuestas1` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -408,6 +413,7 @@ CREATE TABLE `preguntas` (
 
 LOCK TABLES `preguntas` WRITE;
 /*!40000 ALTER TABLE `preguntas` DISABLE KEYS */;
+INSERT INTO `preguntas` VALUES (1,'¿Elección de Presidente?',1,1,'A','cramos','2021-04-05 20:58:01',NULL,NULL),(2,'¿Elección de Secretario?',1,1,'A','cramos','2021-04-05 22:34:01','cramos','2021-04-05 23:18:16'),(3,'¿Elección de Tesorero?',1,1,'A','cramos','2021-04-05 22:35:18','cramos','2021-04-05 23:18:20'),(4,'¿Elección de Vocero?',1,1,'A','cramos','2021-04-05 22:39:05','cramos','2021-04-05 23:19:20'),(5,'¿Elección de Gerente?',2,1,'A','cramos','2021-04-07 19:55:32','cramos','2021-04-07 21:47:50'),(6,'¿Elección de Secretario?',2,1,'A','cramos','2021-04-07 20:26:27',NULL,NULL),(7,'¿Elección de Vocero?',2,2,'A','cramos','2021-04-07 20:27:26',NULL,NULL);
 /*!40000 ALTER TABLE `preguntas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,7 +438,7 @@ CREATE TABLE `respuestas` (
   KEY `fk_respuestas_encuestados1_idx` (`encuestado_id`),
   CONSTRAINT `fk_respuestas_encuestados1` FOREIGN KEY (`encuestado_id`) REFERENCES `encuestados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_respuestas_opciones1` FOREIGN KEY (`opcion_id`) REFERENCES `opciones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,6 +447,7 @@ CREATE TABLE `respuestas` (
 
 LOCK TABLES `respuestas` WRITE;
 /*!40000 ALTER TABLE `respuestas` DISABLE KEYS */;
+INSERT INTO `respuestas` VALUES (1,1,1,'A','cramos','2021-04-07 03:48:04',NULL,NULL),(2,6,1,'A','cramos','2021-04-07 03:48:04',NULL,NULL),(3,11,1,'A','cramos','2021-04-07 03:48:04',NULL,NULL),(4,12,1,'A','cramos','2021-04-07 03:48:04',NULL,NULL),(5,3,2,'A','cramos','2021-04-07 05:26:47',NULL,NULL),(6,6,2,'A','cramos','2021-04-07 05:26:47',NULL,NULL),(7,11,2,'A','cramos','2021-04-07 05:26:47',NULL,NULL),(8,13,2,'A','cramos','2021-04-07 05:26:47',NULL,NULL);
 /*!40000 ALTER TABLE `respuestas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -491,4 +498,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-05  2:39:12
+-- Dump completed on 2021-04-07 21:49:09
