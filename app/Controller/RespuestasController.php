@@ -60,6 +60,10 @@ class RespuestasController extends AppController {
 	    if ($this->request->is('post')) {	        
 			$this->Respuesta->create();
 			if ($this->Respuesta->saveMany($this->request->data)) {
+			    
+			    $this->Respuesta->Encuestado->id=$encuestadoId;
+			    $this->Respuesta->Encuestado->saveField("estado","E");
+			    
 				$this->Flash->success(__('The respuesta has been saved.'));
 				return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
 			} else {

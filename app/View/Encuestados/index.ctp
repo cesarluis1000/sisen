@@ -58,7 +58,7 @@
 		<td>
 			<?php echo $this->Html->link($encuestado['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $encuestado['Encuesta']['id'])); ?>
 		</td>
-		<td><?php echo h($a_estados[$encuestado['Encuestado']['estado']]); ?>&nbsp;</td>
+		<td><?php echo h($a_estados_encuestado[$encuestado['Encuestado']['estado']]); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['creado']); ?>&nbsp;</td>
 		<td class="actions">

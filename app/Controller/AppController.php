@@ -69,6 +69,8 @@ class AppController extends Controller {
         $this->paginate = array('limit'=>20);
 		$this->a_estados = array('A'=>'Activo','D'=>'Desactivo');
 		$this->set('a_estados',$this->a_estados);
+		$this->a_estados_encuestado = array('A'=>'Activo','D'=>'Desactivo','E'=>'Encuestado');
+		$this->set('a_estados_encuestado',$this->a_estados_encuestado);
 		$this->a_nro_respuesta = array('1'=>'Una','2'=>'Dos');
 		$this->set('a_nro_respuesta',$this->a_nro_respuesta);
 		

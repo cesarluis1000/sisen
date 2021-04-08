@@ -52,7 +52,6 @@ class EncuestasController extends AppController {
 		                      'recursive' => 0);
 		$preguntas = $this->Encuesta->Pregunta->find('all',$conditions);
 		$encuestados = $this->Encuesta->Encuestado->find('all',$conditions);
-		//pr($encuestados);
 		$this->set(compact('encuesta', 'preguntas', 'encuestados'));
 	}
 
