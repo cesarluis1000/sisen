@@ -95,6 +95,7 @@ class OpcionesController extends AppController {
 			$this->request->data = $this->Opcion->find('first', $options);
 			$preguntaId = $this->request->data['Opcion']['pregunta_id'];
 		}
+		
 		$options = empty($preguntaId)?array():array('conditions' => array('Pregunta.id' => $preguntaId));;
 		$preguntas = $this->Opcion->Pregunta->find('list', $options);
 		$this->set(compact('preguntas'));
