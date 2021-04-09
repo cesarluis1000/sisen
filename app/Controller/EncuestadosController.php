@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Encuestados Controller
  *
@@ -15,6 +16,15 @@ class EncuestadosController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public function correo() {
+	    $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
+	    $Email->to('cesarluis1000@hotmail.com');
+	    $Email->emailFormat('html');
+	    $Email->template('default')->viewVars( array('body'=>"Hi this is a mail from cakePHP")); // pass your variables here.
+	    $Email->subject('My First Mail from cakephp');
+	    $Email->from('cesarluis1000@gmail.com');
+	    $Email->send();
+	}
 /**
  * index method
  *

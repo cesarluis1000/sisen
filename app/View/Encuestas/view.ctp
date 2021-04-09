@@ -140,6 +140,7 @@
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('controller' => 'Encuestados', 'action' => 'view', $encuestado['Encuestado']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('controller' => 'Encuestados', 'action' => 'edit', $encuestado['Encuestado']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
 			<?php echo $this->Form->postLink($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-trash')), array('controller' => 'Encuestados', 'action' => 'delete', $encuestado['Encuestado']['id']),array('class' => 'btn btn-danger btn-xs','escape'=>false), __('Are you sure you want to delete # %s?', $encuestado['Encuestado']['id'])); ?>
+			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-envelope')), array('controller' => 'Encuestados', 'action' => 'correo', $encuestado['Encuestado']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
