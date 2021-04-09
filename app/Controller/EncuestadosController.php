@@ -16,14 +16,30 @@ class EncuestadosController extends AppController {
  */
 	public $components = array('Paginator');
 
-	public function correo() {
+	public function correo($id = null) {
+	    
+	    $this->Encuestado->recursive = 0;
+	    $encuestado = $this->Encuestado->findById($id);
+	    
 	    $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
-	    $Email->to('cesarluis1000@hotmail.com');
+	    $Email->to($encuestado['Encuestado']['correo']);
 	    $Email->emailFormat('html');
-	    $Email->template('default')->viewVars( array('body'=>"Hi this is a mail from cakePHP")); // pass your variables here.
-	    $Email->subject('My First Mail from cakephp');
+	    $data = array(
+	        'encuestaId'=> $encuestado['Encuestado']['id'],
+	        'encuestado' => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
+	        'dni'=> $encuestado['Encuestado']['dni'],
+	        'encuesta'=> $encuestado['Encuesta']['nombre']
+	    );
+	    $Email->template('default')->viewVars( $data ); // pass your variables here.
+	    $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
 	    $Email->from('cesarluis1000@gmail.com');
-	    $Email->send();
+	    if($Email->send()){
+	        $this->Flash->success(__('Correo enviado'));
+	    }else{
+	        $this->Flash->error(__('Error intente de nuevo'));
+	    }
+	    
+	    $this->set(compact('encuestado'));
 	}
 /**
  * index method
