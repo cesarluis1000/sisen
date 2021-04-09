@@ -15,6 +15,91 @@ class EncuestasController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public function grafico($id = null) {
+	    
+	    $this->loadModel('Pregunta');
+	    $this->loadModel('Respuesta');
+	    
+	    $this->Encuesta->recursive = -1;
+	    $options = array('conditions' => array('Encuesta.' . $this->Encuesta->primaryKey => $id));
+	    $encuesta = $this->Encuesta->find('first', $options);
+	    
+	    $this->Pregunta->unBindModel(array('belongsTo'=>array('Encuesta')));
+	    $options = array('conditions' => array('Pregunta.encuesta_id' => $id));
+	    $preguntas = $this->Pregunta->find('all',$options);
+    
+	    $config = [
+	        "type" => "bar",
+             "options" => [
+                     "legend" => [
+                         "display" => true,
+                         "labels" => [
+                             "fontSize" => 14,
+                             "fontStyle" => "italic",
+                         ]
+                         
+                     ],
+                 
+                    "scales" => [
+                        "yAxes" => [
+                            [
+                                "ticks" => [
+                                    "beginAtZero" => true,
+                                    "fontSize" => 14,
+                                ]
+                            ]
+                        ],
+                        
+                        "xAxes" => [
+                            [
+                                "ticks" => [
+                                    "fontSize" => 12,
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+	           ]; 
+	    
+	    foreach ($preguntas as $i => $pregunta){
+	        
+	        $a_opciones = null;
+	        $a_respuestas = null;
+	        $a_backgroundColor = null;
+	        $a_borderColor = null;
+	        $i_respuesta_pregunta =0; 
+	        foreach ($pregunta['Opcion'] as $j => $opcion){
+	            $a_opciones[] = $opcion['nombre'];
+	            $options = array('conditions' => array('Respuesta.opcion_id' => $opcion['id']));
+	            $i_respuestas_opcion = $this->Respuesta->find('count',$options);
+	            $i_respuesta_pregunta += $i_respuestas_opcion;
+	            $a_respuestas[] = $i_respuestas_opcion;
+	            $a_backgroundColor[] = $this->a_backgroundColor[$j];
+	            $a_borderColor[] = $this->a_borderColor[$j];
+	        }
+	        
+	        //pr($a_opciones);
+	        
+	        $config["data"] = [
+	                           "labels" => $a_opciones,
+                	           "datasets" => [
+                    	                   [
+                            	                "label" => "Total:{$i_respuesta_pregunta} => Pregunta: {$pregunta['Pregunta']['nombre']}",
+                            	                "data" => $a_respuestas,
+                            	                "backgroundColor" => $a_backgroundColor,
+                            	                "borderColor" => $a_borderColor,
+                            	                "borderWidth" => 2
+                    	                   ]
+                	              ]
+                	        ];
+	        
+	        $preguntas[$i]['config'] = $config;
+	    }
+	    
+	    $this->set(compact('encuesta','preguntas'));
+
+	    
+	}
 /**
  * index method
  *

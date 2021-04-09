@@ -50,6 +50,11 @@
 			<?php echo h($encuesta['Encuesta']['modificado']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Resultado'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon glyphicon-object-align-bottom')).__(' Grafico'), array('action' => 'grafico', $encuesta['Encuesta']['id']),array('class' => 'btn btn-success btn-xs','escape'=>false)); ?>
+			&nbsp;
+		</dd>
 	</dl>
 
 <h3><?php echo __('Preguntas'); ?></h3>
