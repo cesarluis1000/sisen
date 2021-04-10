@@ -73,6 +73,10 @@ class RespuestasController extends AppController {
 		$this->Respuesta->Encuestado->recursive = 0;
 		$encuestado = $this->Respuesta->Encuestado->findById($encuestadoId);
 		
+		if ($encuestado['Encuestado']['estado'] =='E'){
+		    return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
+		}
+		
 		$encuestaId = $encuestado['Encuesta']['id'];
 		$options = array('conditions' => array('Pregunta.encuesta_id' => $encuestaId));
 		$preguntas = $this->Pregunta->find('all', $options);

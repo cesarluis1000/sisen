@@ -41,6 +41,42 @@ class EncuestadosController extends AppController {
 	    
 	    $this->set(compact('encuestado'));
 	}
+	
+	public function correos($encuestaId = null) {
+
+	    
+	    $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $encuestaId,
+	                                           'Encuestado.estado' => 'A'));
+	    $encuestados = $this->Encuestado->find('all', $options);
+	    
+	    $b_correos_enviados = true;
+	    foreach ($encuestados as $i => $encuestado){
+	        $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
+	        $Email->to($encuestado['Encuestado']['correo']);
+	        $Email->emailFormat('html');
+	        $data = array(
+	            'encuestaId'=> $encuestado['Encuestado']['id'],
+	            'encuestado' => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
+	            'dni'=> $encuestado['Encuestado']['dni'],
+	            'encuesta'=> $encuestado['Encuesta']['nombre']
+	        );
+	        $Email->template('default')->viewVars( $data ); // pass your variables here.
+	        $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
+	        $Email->from('cesarluis1000@gmail.com');
+	        if(!$Email->send()){
+	            $b_correos_enviados = false;
+	        }
+	    }
+	    if($b_correos_enviados){
+	        $this->Flash->success(__('Correos enviado'));
+	    }else{
+	        $this->Flash->error(__('Error intente de nuevo'));
+	    }
+	    //pr($encuestados);
+	    $this->set(compact('encuestados'));
+	    
+	}
 /**
  * index method
  *
