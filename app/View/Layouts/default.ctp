@@ -13,8 +13,7 @@
 	<meta name="keywords" content="Huanuco, cooperativa, orden de pago, fondo mortuorio, credito pyme" />
 	<!-- Para whatsapp -->
 	<meta property="og:image" content="<?php echo $this->Html->url('/img/logo_og.png',true); ?>" />
-	<meta property="og:image:width" content="300" />
-	<meta property="og:image:height" content="300" />
+	<meta property="og:image:type" content="image/png" />
 
 	<?php
 		echo $this->Html->meta('icon');
