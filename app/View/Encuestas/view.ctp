@@ -151,7 +151,7 @@
 			 $enlace   = Router::url('/Respuestas/add/'.$encuesta['Encuesta']['id'], true);
 			?>
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'fa fa-whatsapp')), 
-			    "https://wa.me/51964121255/?text=Cooperativa San Francisco %0aNombres: {$s_encuestado} %0aDni: {$s_dni} %0aEncuesta: {$s_encuesta} %0aClick para realizar la encuesta %0a{$enlace}",
+			    "https://wa.me/51964121255/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para realizar la encuesta:* %0a{$enlace}",
 			    array('class' => 'btn btn-success btn-xs','target'=>'_blank','escape'=>false)); ?>
 		</td>
 	</tr>
