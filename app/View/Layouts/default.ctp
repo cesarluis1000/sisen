@@ -20,6 +20,7 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->	
 	<?php echo $this->Html->script('jquery-3.2.1.min.js'); ?>	
 	<?php echo $this->Html->script('Chart.min.js'); ?>
+	<?php echo $this->Html->css('font-awesome.min.css'); ?>
 	<?php echo $this->Html->css('elmundotec.css'); ?>
 	<base href="<?php echo Router::url('/', true);?>">
 </head>
