@@ -11,7 +11,11 @@
 	</title>	
 	<meta name="description" content="Somos una organización sin fines de lucro que brinda servicios financieros y cooperativos a sus asociados" />
 	<meta name="keywords" content="Huanuco, cooperativa, orden de pago, fondo mortuorio, credito pyme" />
-	
+	<!-- Para whatsapp -->
+	<meta property="og:image" content="<?php echo $this->Html->url('/img/logo_og.png',true); ?>" />
+	<meta property="og:image:width" content="300" />
+	<meta property="og:image:height" content="300" />
+
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('bootstrap.min.css');
