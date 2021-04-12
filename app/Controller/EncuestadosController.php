@@ -156,6 +156,32 @@ class EncuestadosController extends AppController {
 		$encuestas = $this->Encuestado->Encuesta->find('list');
 		$this->set(compact('encuestaId', 'encuestas'));
 	}
+	
+	public function add_list($encuestaId = null) {
+	    if ($this->request->is('post')) {
+	        $lineSplit = preg_split('/[\r\n]+/', $this->request->data['Encuestado']['encuestados'], -1, PREG_SPLIT_NO_EMPTY);
+	        unset($this->request->data['Encuestado']);
+	        foreach ($lineSplit as $line) {
+	            $splitArr = explode("\t", $line);
+	            $this->request->data[] = array('nombres' => $splitArr[0],
+	                'app' => $splitArr[1],
+	                'apm' => $splitArr[2],
+	                'dni' => $splitArr[3],
+	                'telefono' => $splitArr[4],
+	                'correo' => $splitArr[5],
+	                'encuesta_id' => $encuestaId,
+	            );
+	        }
+	        //pr($this->request->data);
+	        $this->Encuestado->create();
+	        if ($this->Encuestado->saveMany($this->request->data)) {	            
+	            $this->Flash->success(__('The encuestados has been saved.'));
+	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'view', $encuestaId));
+	        } else {
+	            $this->Flash->error(__('The encuestados could not be saved. Please, try again.'));
+	        }
+	    }
+	}
 
 /**
  * edit method
