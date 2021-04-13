@@ -25,9 +25,9 @@
 		</dd>
 		<dt><b><?php echo __('Termino'); ?></b></dt>
 		<dd>
-			<?php echo date("Y-m-d g:i a", strtotime($fecha_inicio)); ?>
+			<?php echo date("Y-m-d g:i a", strtotime($fecha_fin)); ?>
 			&nbsp;
 		</dd>
 	</dl>
 </fieldset>
-<p>Click para realizar la encuesta <a href="<?php echo Router::url('/Respuestas/add/'.$encuestaId, true);?>">Aquí</a></p>
+<p>Click para realizar la encuesta <a href="<?php echo Router::url('/Respuestas/add/'.$encuestadoId, true);?>">Aquí</a></p>

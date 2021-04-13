@@ -31,7 +31,7 @@ class EncuestasController extends AppController {
 	        $Email->to($encuestado['Encuestado']['correo']);
 	        $Email->emailFormat('html');
 	        $data = array(
-	            'encuestaId'   => $encuestado['Encuestado']['id'],
+	            'encuestaId'   => $encuestado['Encuesta']['id'],
 	            'encuestado'   => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
 	            'encuesta'     => $encuestado['Encuesta']['nombre'],
 	            'fecha_inicio' => $encuestado['Encuesta']['fecha_inicio'],
@@ -56,7 +56,7 @@ class EncuestasController extends AppController {
 	}
 	
 	public function enlace_video($encuestaId = null) {
-	    $options = array('conditions' => array('Encuesta.' . $this->Encuesta->primaryKey => $encuestaId));
+	    $options = array('conditions' => array('Encuesta.id' => $encuestaId));
 	    $encuesta = $this->Encuesta->find('first', $options);
 	    $this->set(compact('encuesta'));
 	}

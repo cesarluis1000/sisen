@@ -25,7 +25,7 @@ class EncuestadosController extends AppController {
 	    $Email->to($encuestado['Encuestado']['correo']);
 	    $Email->emailFormat('html');
 	    $data = array(
-	        'encuestaId'=> $encuestado['Encuestado']['id'],
+	        'encuestadoId'=> $encuestado['Encuestado']['id'],
 	        'encuestado' => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
 	        'dni'=> $encuestado['Encuestado']['dni'],
 	        'encuesta'=> $encuestado['Encuesta']['nombre']
@@ -55,7 +55,7 @@ class EncuestadosController extends AppController {
 	        $Email->to($encuestado['Encuestado']['correo']);
 	        $Email->emailFormat('html');
 	        $data = array(
-	            'encuestaId'=> $encuestado['Encuestado']['id'],
+	            'encuestadoId'=> $encuestado['Encuestado']['id'],
 	            'encuestado' => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
 	            'dni'=> $encuestado['Encuestado']['dni'],
 	            'encuesta'=> $encuestado['Encuesta']['nombre'],
