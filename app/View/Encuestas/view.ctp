@@ -12,12 +12,12 @@
 		</dd>
 		<dt><?php echo __('Fecha Inicio'); ?></dt>
 		<dd>
-			<?php echo h($encuesta['Encuesta']['fecha_inicio']); ?>
+			<?php echo date("Y-m-d g:i a", strtotime($encuesta['Encuesta']['fecha_inicio'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Fecha Fin'); ?></dt>
 		<dd>
-			<?php echo h($encuesta['Encuesta']['fecha_fin']); ?>
+			<?php echo date("Y-m-d g:i a", strtotime($encuesta['Encuesta']['fecha_fin'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Enlace Zoom'); ?></dt>
@@ -50,11 +50,14 @@
 			<?php echo h($encuesta['Encuesta']['modificado']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Resultado'); ?></dt>
+		<dt><?php echo __('Acciones'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon glyphicon-object-align-bottom')).__(' Grafico'), 
 			    array('action' => 'grafico', $encuesta['Encuesta']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)); ?>
-			&nbsp;
+			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')).__(' Editar'), 
+			    array('action' => 'edit', $encuesta['Encuesta']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
+			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-facetime-video')).__(' Correo'), 
+			    array('action' => 'correos_video', $encuesta['Encuesta']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
 		</dd>
 	</dl>
 

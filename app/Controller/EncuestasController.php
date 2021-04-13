@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Encuestas Controller
  *
@@ -15,6 +16,51 @@ class EncuestasController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public function correos_video($encuestaId = null) {
+	    $this->loadModel('Encuestado');
+	    
+	    $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $encuestaId,
+	        'Encuestado.estado' => 'A'));
+	    $encuestados = $this->Encuestado->find('all', $options);
+	    
+	    $b_correos_enviados = true;
+	    
+	    foreach ($encuestados as $i => $encuestado){
+	        $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
+	        $Email->to($encuestado['Encuestado']['correo']);
+	        $Email->emailFormat('html');
+	        $data = array(
+	            'encuestaId'   => $encuestado['Encuestado']['id'],
+	            'encuestado'   => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
+	            'encuesta'     => $encuestado['Encuesta']['nombre'],
+	            'fecha_inicio' => $encuestado['Encuesta']['fecha_inicio'],
+	            'fecha_fin'    => $encuestado['Encuesta']['fecha_fin']
+	        );
+	        $Email->template('correo_video')->viewVars( $data ); // pass your variables here.
+	        $Email->subject('Cooperativa San Francisco: Video para encuesta '.$encuestado['Encuesta']['nombre']);
+	        $Email->from('cesarluis1000@gmail.com');
+	        if(!$Email->send()){
+	            $b_correos_enviados = false;
+	        }
+	    }
+	    
+	    if($b_correos_enviados){
+	        $this->Flash->success(__('Correos enviado'));
+	    }else{
+	        $this->Flash->error(__('Error intente de nuevo'));
+	    }
+	    //pr($encuestados);
+	    $this->set(compact('encuestados'));
+	    
+	}
+	
+	public function enlace_video($encuestaId = null) {
+	    $options = array('conditions' => array('Encuesta.' . $this->Encuesta->primaryKey => $encuestaId));
+	    $encuesta = $this->Encuesta->find('first', $options);
+	    $this->set(compact('encuesta'));
+	}
+	
 	public function grafico($id = null) {
 	    
 	    $this->loadModel('Pregunta');

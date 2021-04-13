@@ -1,16 +1,11 @@
 <h1>Cooperativa San Francisco</h1>
 <fieldset>
-	<legend></b><?php echo __('Encuestado'); ?></b></legend>
+	<legend><b><?php echo __('Encuestado'); ?></b></legend>
 
 	<dl class="dl-horizontal">
 		<dt><b><?php echo __('Nombres'); ?></b></dt>
 		<dd>
 			<?php echo $encuestado; ?>
-			&nbsp;
-		</dd>
-		<dt><b><?php echo __('Dni'); ?></b></dt>
-		<dd>
-			<?php echo $dni; ?>
 			&nbsp;
 		</dd>
 		<dt><b><?php echo __('Encuesta'); ?></b></dt>
@@ -25,9 +20,9 @@
 		</dd>
 		<dt><b><?php echo __('Termino'); ?></b></dt>
 		<dd>
-			<?php echo date("Y-m-d g:i a", strtotime($fecha_inicio)); ?>
+			<?php echo date("Y-m-d g:i a", strtotime($fecha_fin)); ?>
 			&nbsp;
 		</dd>
 	</dl>
 </fieldset>
-<p>Click para realizar la encuesta <a href="<?php echo Router::url('/Respuestas/add/'.$encuestaId, true);?>">Aquí</a></p>
+<p>Click para Video <a href="<?php echo Router::url('/Encuestas/enlace_video/'.$encuestaId, true);?>">Aquí</a></p>

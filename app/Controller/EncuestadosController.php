@@ -44,7 +44,6 @@ class EncuestadosController extends AppController {
 	
 	public function correos($encuestaId = null) {
 
-	    
 	    $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
 	    $options = array('conditions' => array('Encuestado.encuesta_id' => $encuestaId,
 	                                           'Encuestado.estado' => 'A'));
@@ -59,7 +58,9 @@ class EncuestadosController extends AppController {
 	            'encuestaId'=> $encuestado['Encuestado']['id'],
 	            'encuestado' => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
 	            'dni'=> $encuestado['Encuestado']['dni'],
-	            'encuesta'=> $encuestado['Encuesta']['nombre']
+	            'encuesta'=> $encuestado['Encuesta']['nombre'],
+	            'fecha_inicio' => $encuestado['Encuesta']['fecha_inicio'],
+	            'fecha_fin'    => $encuestado['Encuesta']['fecha_fin']
 	        );
 	        $Email->template('default')->viewVars( $data ); // pass your variables here.
 	        $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
