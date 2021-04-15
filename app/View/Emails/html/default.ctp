@@ -30,4 +30,4 @@
 		</dd>
 	</dl>
 </fieldset>
-<p>Click para realizar la encuesta <a href="<?php echo Router::url('/Respuestas/add/'.$encuestadoId, true);?>">Aquí</a></p>
+<p>Click para realizar la encuesta <a href="<?php echo Router::url('/Respuestas/encuestar/'.$encuestadoId, true);?>">Aquí</a></p>

@@ -39,32 +39,16 @@ label {
 			<?php echo $this->Html->link($encuestado['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $encuestado['Encuesta']['id'])); ?>
 			&nbsp;
 		</dd>
-		<!-- 
-		<dt><?php echo __('Estado'); ?></dt>
+		<dt><?php echo __('Fecha Inicio'); ?></dt>
 		<dd>
-			<?php echo h($a_estados[$encuestado['Encuestado']['estado']]); ?>
+			<?php echo date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_inicio'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Creador'); ?></dt>
+		<dt><?php echo __('Fecha Fin'); ?></dt>
 		<dd>
-			<?php echo h($encuestado['Encuestado']['creador']); ?>
+			<?php echo date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Creado'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['creado']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modificador'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['modificador']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modificado'); ?></dt>
-		<dd>
-			<?php echo h($encuestado['Encuestado']['modificado']); ?>
-			&nbsp;
-		</dd> -->
 	</dl>
 	
 	<?php echo $this->Form->create('Respuesta', array('class' => 'form-horizontal',

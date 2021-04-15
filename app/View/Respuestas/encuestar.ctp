@@ -36,7 +36,7 @@ label {
 		</dd>
 		<dt><?php echo __('Encuesta'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($encuestado['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $encuestado['Encuesta']['id'])); ?>
+			<?php echo h($encuestado['Encuesta']['nombre']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Fecha Inicio'); ?></dt>

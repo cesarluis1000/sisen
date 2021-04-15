@@ -36,7 +36,7 @@ label {
 		</dd>
 		<dt><?php echo __('Encuesta'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($encuestado['Encuesta']['nombre'], array('controller' => 'encuestas', 'action' => 'view', $encuestado['Encuesta']['id'])); ?>
+			<?php echo h($encuestado['Encuesta']['nombre']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Fecha Inicio'); ?></dt>
@@ -51,7 +51,6 @@ label {
 		</dd>
 	</dl>
 	
-	
 	<?php echo $this->Form->create('Respuesta', array('class' => 'form-horizontal',
 		'inputDefaults'=>array('div' => array('class' => 'form-group'),'between' => '<div class="col-sm-6">','after' => '</div>','class'=>'form-control input-xs','error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline'))))); ?>
 	
@@ -64,7 +63,8 @@ label {
     				<?php foreach ($pregunta['Opcion'] as $opcion): ?>
                       	<li>
                       		<?php echo $this->Form->input($i.'.Respuesta.encuestado_id',array('type' => 'hidden','value'=>$encuestado['Encuestado']['id'])); ?>
-                      		<input type="radio" class="form-check-input" name="data[<?php echo $i ?>][Respuesta][opcion_id]"  value="<?php echo $opcion['id'] ?>" id="RespuestaOpcionId<?php echo $opcion['id'] ?>">
+                      		<input type="radio" class="form-check-input" name="data[<?php echo $i ?>][Respuesta][opcion_id]"  disabled='disabled'
+                      				value="<?php echo $opcion['id'] ?>" id="RespuestaOpcionId<?php echo $opcion['id'] ?>" <?php echo $opcion['checked'] ?> >
                       		<label for="RespuestaOpcionId<?php echo $opcion['id'] ?>"><?php echo $opcion['nombre'] ?></label>
                       	</li>
     				<?php endforeach; ?>
@@ -76,7 +76,7 @@ label {
 	
 	<div class="form-group">
 		<div class="col-sm-12">
-					<?php echo $this->Form->button('Votar', array('type' => 'submit','class'=>'btn btn-success'));  ?>
+					<?php //echo $this->Form->button('Votar', array('type' => 'submit','class'=>'btn btn-success'));  ?>
 		</div>
 	</div>
 		<?php echo $this->Form->end(); ?>

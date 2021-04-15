@@ -78,7 +78,6 @@ class EncuestasController extends AppController {
 	public function enlace_video() {
 	    $this->loadModel('Encuestado');
 	    $this->request->data['Encuestado'] = $this->Session->read('Encuestado');
-	    //pr($this->request->data);
 	    if (isset($this->request->data['Encuestado'])){
 	        
 	        $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));

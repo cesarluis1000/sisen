@@ -83,6 +83,36 @@ class RespuestasController extends AppController {
 		
 		$this->set(compact('encuestado', 'preguntas'));
 	}
+	
+	public function encuestar($encuestadoId = null) {
+	    $this->loadModel('Pregunta');
+	    
+	    if ($this->request->is('post')) {
+	        $this->Respuesta->create();
+	        if ($this->Respuesta->saveMany($this->request->data)) {
+	            
+	            $this->Respuesta->Encuestado->id=$encuestadoId;
+	            $this->Respuesta->Encuestado->saveField("estado","E");
+	            
+	            $this->Flash->success(__('The respuesta has been saved.'));
+	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $encuestadoId));
+	        } else {
+	            $this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
+	        }
+	    }
+	    $this->Respuesta->Encuestado->recursive = 0;
+	    $encuestado = $this->Respuesta->Encuestado->findById($encuestadoId);
+	    
+	    if ($encuestado['Encuestado']['estado'] =='E'){
+	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $encuestadoId));
+	    }
+	    
+	    $encuestaId = $encuestado['Encuesta']['id'];
+	    $options = array('conditions' => array('Pregunta.encuesta_id' => $encuestaId));
+	    $preguntas = $this->Pregunta->find('all', $options);
+	    
+	    $this->set(compact('encuestado', 'preguntas'));
+	}
 
 /**
  * edit method

@@ -110,9 +110,11 @@ class AppController extends Controller {
 		    $allow = array_merge($allow,array('index','edit','view','add','delete','options'));		    		    
 		}*/
 		//$this->Auth->allow($allow);
-		$this->Auth->allow('login_video','login','logout','display','login2','index2','add','edit2','view','delete2','enlace_video');
+		$this->Auth->allow('login','logout','display','login2','index2','add2','edit2','view2','delete2',
+		    'login_video','enlace_video','encuestar','encuestado');
 	
-		$this->__checkAuth();				
+		$this->__checkAuth();
+		$this->__encuestado();
 	}
 	
 	public function options(){	    
@@ -122,6 +124,13 @@ class AppController extends Controller {
 	    ));
 	}
 	
+	private function __encuestado() {
+	    //Acciones que utilizarar el layout ecommerce
+	    $this->acciones_ecommerce = array('login_video','enlace_video','encuestar','encuestado');
+	    if (in_array($this->action, $this->acciones_ecommerce)){
+	        $this->layout = 'encuestado';
+	    }
+	}
 
     private function __checkAuth() {
         $currentUser = $this->Auth->user();
