@@ -55,10 +55,48 @@ class EncuestasController extends AppController {
 	    
 	}
 	
-	public function enlace_video($encuestaId = null) {
-	    $options = array('conditions' => array('Encuesta.id' => $encuestaId));
-	    $encuesta = $this->Encuesta->find('first', $options);
-	    $this->set(compact('encuesta'));
+	public function login_video(){
+	    $this->loadModel('Encuestado');
+	    if ($this->request->is('post')) {
+	        $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
+	        $options = array('conditions' => array('Encuestado.correo' => $this->request->data['Encuestado']['correo'],
+	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
+	                                               'Encuesta.fecha_inicio >=' => date("Y-m-d", strtotime("-1 week")),
+	                                               'Encuesta.estado' => 'A',
+	                                               'Encuestado.estado' => 'A',
+	                                               ));
+	        $encuestado = $this->Encuestado->find('count', $options);
+	        if ($encuestado > 0) {
+	            $this->Session->write('Encuestado', $this->request->data['Encuestado']);
+	            return $this->redirect(array('action' => 'enlace_video'));
+	        } else {
+	            $this->Flash->error(__('Your username or password was incorrect.'));
+	        }
+	    }
+	}
+	
+	public function enlace_video() {
+	    $this->loadModel('Encuestado');
+	    $this->request->data['Encuestado'] = $this->Session->read('Encuestado');
+	    //pr($this->request->data);
+	    if (isset($this->request->data['Encuestado'])){
+	        
+	        $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
+	        $options = array('conditions' => array('Encuestado.correo' => $this->request->data['Encuestado']['correo'],
+	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
+                                    	            'Encuesta.estado' => 'A',
+                                    	            'Encuestado.estado' => 'A',
+	                                               'Encuesta.fecha_inicio >=' => date("Y-m-d", strtotime("-1 week")),
+	                       ),
+	            'order' => array('Encuesta.fecha_inicio')
+	            
+	        );
+	        $encuesta = $this->Encuestado->find('first', $options);
+    	    $this->set(compact('encuesta'));
+    	    $this->Session->delete('Encuestado');
+	    }else{
+	        return $this->redirect(array('action' => 'login_video'));
+	    }
 	}
 	
 	public function grafico($id = null) {
