@@ -39,7 +39,7 @@ class EncuestasController extends AppController {
 	        );
 	        $Email->template('correo_video')->viewVars( $data ); // pass your variables here.
 	        $Email->subject('Cooperativa San Francisco: Video para encuesta '.$encuestado['Encuesta']['nombre']);
-	        $Email->from('cesarluis1007@gmail.com');
+	        $Email->from('cesarluis1000@gmail.com');
 	        if(!$Email->send()){
 	            $b_correos_enviados = false;
 	        }
