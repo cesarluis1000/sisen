@@ -37,6 +37,8 @@ class EncuestadosController extends AppController {
 	    $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
 	    $Email->from('cesarluis1000@gmail.com');
 	    if($Email->send()){
+	        $this->Encuestado->id=$id;
+	        $this->Encuestado->saveField("correo_enviado","Y");
 	        $this->Flash->success(__('Correo enviado'));
 	    }else{
 	        $this->Flash->error(__('Error intente de nuevo'));
@@ -71,6 +73,9 @@ class EncuestadosController extends AppController {
 	        $Email->from('cesarluis1000@gmail.com');
 	        if(!$Email->send()){
 	            $b_correos_enviados = false;
+	        }else{
+	            $this->Encuestado->id=$encuestado['Encuestado']['id'];
+	            $this->Encuestado->saveField("correo_enviado","Y");
 	        }
 	    }
 	    if($b_correos_enviados){

@@ -130,6 +130,7 @@
 			<th><?php echo 'app'; ?></th>
 			<th><?php echo 'apm'; ?></th>
 			<th><?php echo 'correo'; ?></th>
+			<th><?php echo 'enviado'; ?></th>
 			<th><?php echo 'estado'; ?></th>
 			<th><?php echo 'creador'; ?></th>
 			<th><?php echo 'creado'; ?></th>
@@ -144,6 +145,7 @@
 		<td><?php echo h($encuestado['Encuestado']['app']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['apm']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['correo']); ?>&nbsp;</td>
+		<td><?php echo h($a_correo_enviado[$encuestado['Encuestado']['correo_enviado']]); ?>&nbsp;</td>
 		<td><?php echo h($a_estados_encuestado[$encuestado['Encuestado']['estado']]); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['creado']); ?>&nbsp;</td>
