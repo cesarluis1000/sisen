@@ -159,7 +159,7 @@
     			 $s_dni          = h($encuestado['Encuestado']['dni']);
     			 $s_telefono     = h($encuestado['Encuestado']['telefono']);
     			 $s_encuesta     = h($encuestado['Encuesta']['nombre']);
-    			 $enlace         = Router::url('/Respuestas/add/'.$encuesta['Encuesta']['id'], true);
+    			 $enlace         = Router::url('/Respuestas/encuestar/'.$encuesta['Encuesta']['hash'], true);
     			?>
     			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'fa fa-whatsapp')), 
     			    "https://wa.me/51{$s_telefono}/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para realizar la encuesta:* %0a{$enlace}",
