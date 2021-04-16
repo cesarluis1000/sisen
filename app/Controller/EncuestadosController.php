@@ -35,7 +35,7 @@ class EncuestadosController extends AppController {
 	    );
 	    $Email->template('default')->viewVars( $data ); // pass your variables here.
 	    $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
-	    $Email->from('cesarluis1000@gmail.com');
+	    $Email->from('cesarluis1007@gmail.com');
 	    if($Email->send()){
 	        $this->Encuestado->id=$id;
 	        $this->Encuestado->saveField("correo_enviado","Y");
@@ -70,7 +70,7 @@ class EncuestadosController extends AppController {
 	        );
 	        $Email->template('default')->viewVars( $data ); // pass your variables here.
 	        $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
-	        $Email->from('cesarluis1000@gmail.com');
+	        $Email->from('cesarluis1007@gmail.com');
 	        if(!$Email->send()){
 	            $b_correos_enviados = false;
 	        }else{
