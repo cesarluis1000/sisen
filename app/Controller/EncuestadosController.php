@@ -191,7 +191,7 @@ class EncuestadosController extends AppController {
 			$this->Encuestado->create();
 			$this->request->data['Encuestado']['hash'] = md5(microtime(true).mt_Rand());
 			if ($this->Encuestado->save($this->request->data)) {
-			    $this->Flash->success(__('The encuestado has been saved.'));
+			    $this->Flash->success(__('El encuestado se ha guardado.'));
 			    $encuestaId = $this->request->data['Encuestado']['encuesta_id'];
 			    return $this->redirect(array('controller' => 'Encuestas','action' => 'view',$encuestaId));
 			} else {
@@ -221,7 +221,7 @@ class EncuestadosController extends AppController {
 	        //pr($this->request->data);
 	        $this->Encuestado->create();
 	        if ($this->Encuestado->saveMany($this->request->data)) {	            
-	            $this->Flash->success(__('The encuestados has been saved.'));
+	            $this->Flash->success(__('Los encuestados se hah guardado.'));
 	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'view', $encuestaId));
 	        } else {
 	            $this->Flash->error(__('The encuestados could not be saved. Please, try again.'));
@@ -242,7 +242,7 @@ class EncuestadosController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Encuestado->save($this->request->data)) {
-			    $this->Flash->success(__('The encuestado has been saved.'));
+			    $this->Flash->success(__('La encuestado se ha modificado.'));
 			    $encuestaId = $this->request->data['Encuestado']['encuesta_id'];
 			    return $this->redirect(array('controller' => 'Encuestas','action' => 'view',$encuestaId));
 			} else {
