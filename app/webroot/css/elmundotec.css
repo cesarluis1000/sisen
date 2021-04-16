@@ -85,3 +85,7 @@ table .btn-xs{
 	padding: 5px 7px;
     line-height: 1;
 }
+.estado{
+	color: red;
+    font-weight: bold;
+}

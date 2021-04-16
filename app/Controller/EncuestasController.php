@@ -234,11 +234,11 @@ class EncuestasController extends AppController {
 //		    exit;
 			$this->Encuesta->create();
 			if ($this->Encuesta->save($this->request->data)) {
-				$this->Flash->success(__('The encuesta has been saved.'));
+				$this->Flash->success(__('La encuesta se ha guardado.'));
 				$encuestaId = $this->Encuesta->getInsertID();
 				return $this->redirect(array('action' => 'view',$encuestaId));
 			} else {
-				$this->Flash->error(__('The encuesta could not be saved. Please, try again.'));
+				$this->Flash->error(__('La encuesta no se pudo salvar. Inténtalo de nuevo.'));
 			}
 		}
 	}
@@ -256,10 +256,10 @@ class EncuestasController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Encuesta->save($this->request->data)) {
-				$this->Flash->success(__('The encuesta has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Flash->success(__('La encuesta se ha modificado.'));
+				return $this->redirect(array('action' => 'view',$id));
 			} else {
-				$this->Flash->error(__('The encuesta could not be saved. Please, try again.'));
+				$this->Flash->error(__('La encuesta no se pudo salvar. Inténtalo de nuevo.'));
 			}
 		} else {
 			$options = array('conditions' => array('Encuesta.' . $this->Encuesta->primaryKey => $id));
@@ -286,9 +286,9 @@ class EncuestasController extends AppController {
 		$this->request->data['Encuesta']['estado'] = 'D';
 		
 		if ($this->Encuesta->save($this->request->data)) {
-			$this->Flash->success(__('The encuesta has been deleted.'));
+			$this->Flash->success(__('La encuesta ha sido Desactivada.'));
 		} else {
-			$this->Flash->error(__('The encuesta could not be deleted. Please, try again.'));
+			$this->Flash->error(__('La encuesta no se pudo borrar. Inténtalo de nuevo.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

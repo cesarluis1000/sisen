@@ -26,7 +26,7 @@
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Estado'); ?></dt>
-		<dd>
+		<dd class="estado">
 			<?php echo h($a_estados[$encuesta['Encuesta']['estado']]); ?>
 			&nbsp;
 		</dd>
@@ -56,16 +56,16 @@
 			    array('action' => 'grafico', $encuesta['Encuesta']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)); ?>
 			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')).__(' Editar'), 
 			    array('action' => 'edit', $encuesta['Encuesta']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
-			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-facetime-video')).__(' Correo'), 
-			    array('action' => 'correos_video', $encuesta['Encuesta']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
+			<?php echo ($encuesta['Encuesta']['estado'] == 'A')?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-facetime-video')).__(' Correo'), 
+			    array('action' => 'correos_video', $encuesta['Encuesta']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)):''; ?>
 		</dd>
 	</dl>
 
 <h3><?php echo __('Preguntas'); ?></h3>
 <div class="row">
      <div class="col-md-12 text-right">
-    		<?php echo $this->Html->link($this->Html->tag('span','', array('class' => 'glyphicon glyphicon-file')).__(' Nuevo'),
-    		    array('controller' => 'Preguntas', 'action' => 'add',$encuesta['Encuesta']['id']),array('class' => 'btn btn-success btn-xs','escape'=>false)); ?>
+    		<?php echo ($encuesta['Encuesta']['estado'] == 'A')?$this->Html->link($this->Html->tag('span','', array('class' => 'glyphicon glyphicon-file')).__(' Nuevo'),
+    		    array('controller' => 'Preguntas', 'action' => 'add',$encuesta['Encuesta']['id']),array('class' => 'btn btn-success btn-xs','escape'=>false)):''; ?>
     </div>
 </div>
 
@@ -93,9 +93,11 @@
 		<td><?php echo h($pregunta['Pregunta']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($pregunta['Pregunta']['creado']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('controller' => 'Preguntas', 'action' => 'view', $pregunta['Pregunta']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)); ?>
-			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('controller' => 'Preguntas', 'action' => 'edit', $pregunta['Pregunta']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
-			<?php echo $this->Form->postLink($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-trash')), array('controller' => 'Preguntas', 'action' => 'delete', $pregunta['Pregunta']['id']),array('class' => 'btn btn-danger btn-xs','escape'=>false), __('Are you sure you want to delete # %s?', $pregunta['Pregunta']['id'])); ?>
+			<div <?php echo ($encuesta['Encuesta']['estado'] == 'A')?"":"class='hide'";?> >
+    			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('controller' => 'Preguntas', 'action' => 'view', $pregunta['Pregunta']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)); ?>
+    			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('controller' => 'Preguntas', 'action' => 'edit', $pregunta['Pregunta']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
+    			<?php echo $this->Form->postLink($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-trash')), array('controller' => 'Preguntas', 'action' => 'delete', $pregunta['Pregunta']['id']),array('class' => 'btn btn-danger btn-xs','escape'=>false), __('Are you sure you want to delete # %s?', $pregunta['Pregunta']['id'])); ?>
+			</div>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -106,12 +108,14 @@
 <h3><?php echo __('Encuestados'); ?></h3>
 <div class="row">
      <div class="col-md-12 text-right">
-    		<?php echo $this->Html->link($this->Html->tag('span','', array('class' => 'glyphicon glyphicon-envelope')).__(' Enviar'),
-    		    array('controller' => 'Encuestados', 'action' => 'correos',$encuesta['Encuesta']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
-    		<?php echo $this->Html->link($this->Html->tag('span','', array('class' => 'fa fa-table')).__(' Nuevo'),
-    		    array('controller' => 'Encuestados', 'action' => 'add_list',$encuesta['Encuesta']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)); ?>
-    		<?php echo $this->Html->link($this->Html->tag('span','', array('class' => 'glyphicon glyphicon-file')).__(' Nuevo'),
-    		    array('controller' => 'Encuestados', 'action' => 'add',$encuesta['Encuesta']['id']),array('class' => 'btn btn-success btn-xs','escape'=>false)); ?>
+			<div <?php echo ($encuesta['Encuesta']['estado'] == 'A')?"":"class='hide'";?> >
+        		<?php echo $this->Html->link($this->Html->tag('span','', array('class' => 'glyphicon glyphicon-envelope')).__(' Enviar'),
+        		    array('controller' => 'Encuestados', 'action' => 'correos',$encuesta['Encuesta']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
+        		<?php echo $this->Html->link($this->Html->tag('span','', array('class' => 'fa fa-table')).__(' Nuevo'),
+        		    array('controller' => 'Encuestados', 'action' => 'add_list',$encuesta['Encuesta']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)); ?>
+        		<?php echo $this->Html->link($this->Html->tag('span','', array('class' => 'glyphicon glyphicon-file')).__(' Nuevo'),
+        		    array('controller' => 'Encuestados', 'action' => 'add',$encuesta['Encuesta']['id']),array('class' => 'btn btn-success btn-xs','escape'=>false)); ?>
+    		</div>
     </div>
 </div>
 
@@ -144,20 +148,22 @@
 		<td><?php echo h($encuestado['Encuestado']['creador']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['creado']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo ($encuestado['Encuestado']['estado'] == 'A')?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-list')), array('controller' => 'Respuestas', 'action' => 'add', $encuestado['Encuestado']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)):''; ?>
-			<?php echo ($encuestado['Encuestado']['estado'] == 'E')?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('controller' => 'Encuestados', 'action' => 'view', $encuestado['Encuestado']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)):''; ?>
-			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('controller' => 'Encuestados', 'action' => 'edit', $encuestado['Encuestado']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
-			<?php echo $this->Form->postLink($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-trash')), array('controller' => 'Encuestados', 'action' => 'delete', $encuestado['Encuestado']['id']),array('class' => 'btn btn-danger btn-xs','escape'=>false), __('Are you sure you want to delete # %s?', $encuestado['Encuestado']['id'])); ?>
-			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-envelope')), array('controller' => 'Encuestados', 'action' => 'correo', $encuestado['Encuestado']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
-			<?php 
-			 $s_encuestado  = h($encuestado['Encuestado']['nombres']).' '.h($encuestado['Encuestado']['app']).' '.h($encuestado['Encuestado']['apm']);
-			 $s_dni      = h($encuestado['Encuestado']['dni']);
-			 $s_encuesta = h($encuestado['Encuesta']['nombre']);
-			 $enlace   = Router::url('/Respuestas/add/'.$encuesta['Encuesta']['id'], true);
-			?>
-			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'fa fa-whatsapp')), 
-			    "https://wa.me/51964121255/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para realizar la encuesta:* %0a{$enlace}",
-			    array('class' => 'btn btn-success btn-xs','target'=>'_blank','escape'=>false)); ?>
+			<div <?php echo ($encuesta['Encuesta']['estado'] == 'A')?"":"class='hide'";?> >
+    			<?php echo ($encuestado['Encuestado']['estado'] == 'A')?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-list')), array('controller' => 'Respuestas', 'action' => 'add', $encuestado['Encuestado']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)):''; ?>
+    			<?php echo ($encuestado['Encuestado']['estado'] == 'E')?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('controller' => 'Encuestados', 'action' => 'view', $encuestado['Encuestado']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)):''; ?>
+    			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('controller' => 'Encuestados', 'action' => 'edit', $encuestado['Encuestado']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
+    			<?php echo $this->Form->postLink($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-trash')), array('controller' => 'Encuestados', 'action' => 'delete', $encuestado['Encuestado']['id']),array('class' => 'btn btn-danger btn-xs','escape'=>false), __('Are you sure you want to delete # %s?', $encuestado['Encuestado']['id'])); ?>
+    			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-envelope')), array('controller' => 'Encuestados', 'action' => 'correo', $encuestado['Encuestado']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
+    			<?php 
+    			 $s_encuestado  = h($encuestado['Encuestado']['nombres']).' '.h($encuestado['Encuestado']['app']).' '.h($encuestado['Encuestado']['apm']);
+    			 $s_dni      = h($encuestado['Encuestado']['dni']);
+    			 $s_encuesta = h($encuestado['Encuesta']['nombre']);
+    			 $enlace   = Router::url('/Respuestas/add/'.$encuesta['Encuesta']['id'], true);
+    			?>
+    			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'fa fa-whatsapp')), 
+    			    "https://wa.me/51964121255/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para realizar la encuesta:* %0a{$enlace}",
+    			    array('class' => 'btn btn-success btn-xs','target'=>'_blank','escape'=>false)); ?>
+    		</div>
 		</td>
 	</tr>
 <?php endforeach; ?>
