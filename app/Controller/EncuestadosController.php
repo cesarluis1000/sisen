@@ -28,6 +28,7 @@ class EncuestadosController extends AppController {
 	        'encuestadoId'=> $encuestado['Encuestado']['id'],
 	        'encuestado' => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
 	        'dni'=> $encuestado['Encuestado']['dni'],
+	        'hash'=> $encuestado['Encuestado']['hash'],
 	        'encuesta'=> $encuestado['Encuesta']['nombre'],
 	        'fecha_inicio' => $encuestado['Encuesta']['fecha_inicio'],
 	        'fecha_fin'    => $encuestado['Encuesta']['fecha_fin']
@@ -60,6 +61,7 @@ class EncuestadosController extends AppController {
 	            'encuestadoId'=> $encuestado['Encuestado']['id'],
 	            'encuestado' => $encuestado['Encuestado']['nombres'].' '.$encuestado['Encuestado']['app'].' '.$encuestado['Encuestado']['apm'],
 	            'dni'=> $encuestado['Encuestado']['dni'],
+	            'hash'=> $encuestado['Encuestado']['hash'],
 	            'encuesta'=> $encuestado['Encuesta']['nombre'],
 	            'fecha_inicio' => $encuestado['Encuesta']['fecha_inicio'],
 	            'fecha_fin'    => $encuestado['Encuesta']['fecha_fin']
@@ -140,9 +142,14 @@ class EncuestadosController extends AppController {
 		$this->set(compact('encuestado', 'preguntas'));
 	}
 	
-	public function encuestado($id = null) {
+	public function encuestado($hash = null) {
 	    $this->loadModel('Pregunta');
 	    $this->loadModel('Respuesta');
+	    $this->loadModel('Encuestado');
+	    $this->Encuestado->recursive = 0;
+	    $options = array('conditions' => array('Encuestado.hash' => $hash));
+	    $encuestado = $this->Encuestado->find('first', $options);
+	    $id = $encuestado['Encuestado']['id'];
 	    
 	    if (!$this->Encuestado->exists($id)) {
 	        throw new NotFoundException(__('Invalid encuestado'));
@@ -182,6 +189,7 @@ class EncuestadosController extends AppController {
 	public function add($encuestaId = null) {
 		if ($this->request->is('post')) {
 			$this->Encuestado->create();
+			$this->request->data['Encuestado']['hash'] = md5(microtime(true).mt_Rand());
 			if ($this->Encuestado->save($this->request->data)) {
 			    $this->Flash->success(__('The encuestado has been saved.'));
 			    $encuestaId = $this->request->data['Encuestado']['encuesta_id'];
@@ -201,12 +209,13 @@ class EncuestadosController extends AppController {
 	        foreach ($lineSplit as $line) {
 	            $splitArr = explode("\t", $line);
 	            $this->request->data[] = array('nombres' => $splitArr[0],
-	                'app' => $splitArr[1],
-	                'apm' => $splitArr[2],
-	                'dni' => $splitArr[3],
+	                'app'      => $splitArr[1],
+	                'apm'      => $splitArr[2],
+	                'dni'      => $splitArr[3],
 	                'telefono' => $splitArr[4],
-	                'correo' => $splitArr[5],
+	                'correo'   => $splitArr[5],
 	                'encuesta_id' => $encuestaId,
+	                'hash'     => md5(microtime(true).mt_Rand())
 	            );
 	        }
 	        //pr($this->request->data);

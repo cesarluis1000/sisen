@@ -84,8 +84,13 @@ class RespuestasController extends AppController {
 		$this->set(compact('encuestado', 'preguntas'));
 	}
 	
-	public function encuestar($encuestadoId = null) {
+	public function encuestar($hash = null) {
 	    $this->loadModel('Pregunta');
+	    $this->loadModel('Encuestado');
+	    $this->Encuestado->recursive = 0;
+	    $options = array('conditions' => array('Encuestado.hash' => $hash));
+	    $encuestado = $this->Encuestado->find('first', $options);
+	    $encuestadoId = $encuestado['Encuestado']['id'];
 	    
 	    if ($this->request->is('post')) {
 	        $this->Respuesta->create();
@@ -95,16 +100,14 @@ class RespuestasController extends AppController {
 	            $this->Respuesta->Encuestado->saveField("estado","E");
 	            
 	            $this->Flash->success(__('The respuesta has been saved.'));
-	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $encuestadoId));
+	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
 	        } else {
 	            $this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
 	        }
 	    }
-	    $this->Respuesta->Encuestado->recursive = 0;
-	    $encuestado = $this->Respuesta->Encuestado->findById($encuestadoId);
 	    
 	    if ($encuestado['Encuestado']['estado'] =='E'){
-	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $encuestadoId));
+	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
 	    }
 	    
 	    $encuestaId = $encuestado['Encuesta']['id'];
