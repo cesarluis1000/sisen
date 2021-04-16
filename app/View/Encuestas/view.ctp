@@ -155,14 +155,14 @@
     			<?php echo $this->Form->postLink($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-trash')), array('controller' => 'Encuestados', 'action' => 'delete', $encuestado['Encuestado']['id']),array('class' => 'btn btn-danger btn-xs','escape'=>false), __('Are you sure you want to delete # %s?', $encuestado['Encuestado']['id'])); ?>
     			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-envelope')), array('controller' => 'Encuestados', 'action' => 'correo', $encuestado['Encuestado']['id']),array('class' => 'btn btn-primary btn-xs','escape'=>false)); ?>
     			<?php 
-    			 $s_encuestado  = h($encuestado['Encuestado']['nombres']).' '.h($encuestado['Encuestado']['app']).' '.h($encuestado['Encuestado']['apm']);
-    			 $s_dni      = h($encuestado['Encuestado']['dni']);
-    			 $s_telefono      = h($encuestado['Encuestado']['telefono']);
-    			 $s_encuesta = h($encuestado['Encuesta']['nombre']);
-    			 $enlace   = Router::url('/Respuestas/add/'.$encuesta['Encuesta']['id'], true);
+    			 $s_encuestado   = h($encuestado['Encuestado']['nombres']).' '.h($encuestado['Encuestado']['app']).' '.h($encuestado['Encuestado']['apm']);
+    			 $s_dni          = h($encuestado['Encuestado']['dni']);
+    			 $s_telefono     = h($encuestado['Encuestado']['telefono']);
+    			 $s_encuesta     = h($encuestado['Encuesta']['nombre']);
+    			 $enlace         = Router::url('/Respuestas/add/'.$encuesta['Encuesta']['id'], true);
     			?>
     			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'fa fa-whatsapp')), 
-    			    "https://wa.me/{$s_telefono}/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para realizar la encuesta:* %0a{$enlace}",
+    			    "https://wa.me/51{$s_telefono}/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para realizar la encuesta:* %0a{$enlace}",
     			    array('class' => 'btn btn-success btn-xs','target'=>'_blank','escape'=>false)); ?>
     		</div>
 		</td>
