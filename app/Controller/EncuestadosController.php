@@ -71,7 +71,7 @@ class EncuestadosController extends AppController {
 	        );
 	        $Email->template('correo_encuesta')->viewVars( $data ); // pass your variables here.
 	        $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
-	        $Email->from('cesarluis1000@gmail.com');
+	        $Email->from(array('cesarluis1000@gmail.com' => 'Cooperativa San Francisco'));
 	        if(!$Email->send()){
 	            $b_correos_enviados = false;
 	        }else{
