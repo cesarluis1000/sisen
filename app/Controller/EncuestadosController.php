@@ -57,7 +57,7 @@ class EncuestadosController extends AppController {
 	    
 	    $b_correos_enviados = true;
 	    foreach ($encuestados as $i => $encuestado){
-	        $Email = new CakeEmail('gmail'); // Replace Smtp to default if you don’t want send mail from SMTP
+	        $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
 	        $Email->to($encuestado['Encuestado']['correo']);
 	        $Email->emailFormat('html');
 	        $data = array(
