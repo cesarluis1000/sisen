@@ -21,7 +21,7 @@ class EncuestadosController extends AppController {
 	    $this->Encuestado->recursive = 0;
 	    $encuestado = $this->Encuestado->findById($id);
 	    
-	    $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
+	    $Email = new CakeEmail('gmail'); // Replace Smtp to default if you don’t want send mail from SMTP
 	    $Email->to($encuestado['Encuestado']['correo']);
 	    $Email->emailFormat('html');
 	    $data = array(
@@ -33,9 +33,9 @@ class EncuestadosController extends AppController {
 	        'fecha_inicio' => $encuestado['Encuesta']['fecha_inicio'],
 	        'fecha_fin'    => $encuestado['Encuesta']['fecha_fin']
 	    );
-	    $Email->template('default')->viewVars( $data ); // pass your variables here.
+	    $Email->template('correo_encuesta')->viewVars( $data ); // pass your variables here.
 	    $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
-	    $Email->from('cesarluis1000@gmail.com');
+	    $Email->from(array('cesarluis1000@gmail.com' => 'Cooperativa San Francisco'));
 	    if($Email->send()){
 	        $this->Encuestado->id=$id;
 	        $this->Encuestado->saveField("correo_enviado","Y");
@@ -45,6 +45,7 @@ class EncuestadosController extends AppController {
 	    }
 	    
 	    $this->set(compact('encuestado'));
+	    
 	}
 	
 	public function correos($encuestaId = null) {
@@ -68,7 +69,7 @@ class EncuestadosController extends AppController {
 	            'fecha_inicio' => $encuestado['Encuesta']['fecha_inicio'],
 	            'fecha_fin'    => $encuestado['Encuesta']['fecha_fin']
 	        );
-	        $Email->template('default')->viewVars( $data ); // pass your variables here.
+	        $Email->template('correo_encuesta')->viewVars( $data ); // pass your variables here.
 	        $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
 	        $Email->from('cesarluis1000@gmail.com');
 	        if(!$Email->send()){
