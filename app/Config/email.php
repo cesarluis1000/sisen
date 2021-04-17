@@ -72,8 +72,8 @@ class EmailConfig {
 	
 	public $smtp = array(
 	    'transport' => 'Smtp',
-	    'host' => 'mail.elmundotec.com',
-	    'port' => 26,
+	    'host' => 'ssl://elmundotec.com',
+	    'port' => 465,
         'timeout' => 30,
         'username' => 'ventas@elmundotec.com',
 		'password' => 'cesarluis1000',
