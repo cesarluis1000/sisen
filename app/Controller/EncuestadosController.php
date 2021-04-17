@@ -21,7 +21,7 @@ class EncuestadosController extends AppController {
 	    $this->Encuestado->recursive = 0;
 	    $encuestado = $this->Encuestado->findById($id);
 	    
-	    $Email = new CakeEmail('gmail'); // Replace Smtp to default if you don’t want send mail from SMTP
+	    $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
 	    $Email->to($encuestado['Encuestado']['correo']);
 	    $Email->emailFormat('html');
 	    $data = array(
@@ -35,7 +35,7 @@ class EncuestadosController extends AppController {
 	    );
 	    $Email->template('correo_encuesta')->viewVars( $data ); // pass your variables here.
 	    $Email->subject('Cooperativa San Francisco: '.$encuestado['Encuesta']['nombre']);
-	    $Email->from(array('cesarluis1000@gmail.com' => 'Cooperativa San Francisco'));
+	    $Email->from(array('ventas@elmundotec.com' => 'Cooperativa San Francisco'));
 	    if($Email->send()){
 	        $this->Encuestado->id=$id;
 	        $this->Encuestado->saveField("correo_enviado","Y");
@@ -57,7 +57,7 @@ class EncuestadosController extends AppController {
 	    
 	    $b_correos_enviados = true;
 	    foreach ($encuestados as $i => $encuestado){
-	        $Email = new CakeEmail('smtp'); // Replace Smtp to default if you don’t want send mail from SMTP
+	        $Email = new CakeEmail('gmail'); // Replace Smtp to default if you don’t want send mail from SMTP
 	        $Email->to($encuestado['Encuestado']['correo']);
 	        $Email->emailFormat('html');
 	        $data = array(
