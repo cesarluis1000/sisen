@@ -70,7 +70,7 @@ class EmailConfig {
 	    'headerCharset' => 'utf-8',
 	);
 	
-	public $smtp = array(
+	public $smtp2 = array(
 	    'transport' => 'Smtp',
 	    'host' => 'ssl://elmundotec.com',
 	    'port' => 465,
@@ -82,6 +82,20 @@ class EmailConfig {
 		'charset' => 'utf-8',
 		'headerCharset' => 'utf-8',
 	);
+	
+	public $smtp = array(
+	    'transport' => 'Smtp',
+	    'host' => 'ssl://elmundotec.com',
+	    'port' => 465,
+	    'timeout' => 30,
+	    'username' => 'sisen@elmundotec.com',
+	    'password' => 'sanfrancisco1000',
+	    'client' => null,
+	    'log' => false,
+	    'charset' => 'utf-8',
+	    'headerCharset' => 'utf-8',
+	);
+	
 
 	public $fast = array(
 		'from' => 'you@localhost',
