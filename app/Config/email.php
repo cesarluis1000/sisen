@@ -57,13 +57,13 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 */	
-	public $gmail = array(
+	public $smtp = array(
 	    'transport' => 'Smtp',
 	    'host' => 'ssl://smtp.gmail.com',
 	    'port' => 465,
 	    'timeout' => 30,
-	    'username' => 'cesarluis1000@gmail.com',
-	    'password' => 'Cesar101.',
+	    'username' => 'cesarluis1007@gmail.com',
+	    'password' => 'cesar@100.',
 	    'client' => null,
 	    'log' => false,
 	    'charset' => 'utf-8',
@@ -71,19 +71,6 @@ class EmailConfig {
 	);
 	
 	public $smtp2 = array(
-	    'transport' => 'Smtp',
-	    'host' => 'ssl://elmundotec.com',
-	    'port' => 465,
-        'timeout' => 30,
-        'username' => 'ventas@elmundotec.com',
-		'password' => 'cesarluis1000',
-		'client' => null,
-		'log' => false,
-		'charset' => 'utf-8',
-		'headerCharset' => 'utf-8',
-	);
-	
-	public $smtp = array(
 	    'transport' => 'Smtp',
 	    'host' => 'ssl://elmundotec.com',
 	    'port' => 465,
