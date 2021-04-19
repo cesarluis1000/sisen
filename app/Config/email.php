@@ -57,7 +57,7 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 */	
-	public $smtp = array(
+	public $smtp2 = array(
 	    'transport' => 'Smtp',
 	    'host' => 'ssl://smtp.gmail.com',
 	    'port' => 465,
@@ -70,7 +70,7 @@ class EmailConfig {
 	    'headerCharset' => 'utf-8',
 	);
 	
-	public $smtp2 = array(
+	public $smtp = array(
 	    'transport' => 'Smtp',
 	    'host' => 'ssl://elmundotec.com',
 	    'port' => 465,
