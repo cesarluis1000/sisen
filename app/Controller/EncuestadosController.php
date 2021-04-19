@@ -163,29 +163,8 @@ class EncuestadosController extends AppController {
 	    }
 	    $this->Encuestado->recursive = 0;
 	    $encuestado = $this->Encuestado->findById($id);
-	    
-	    $encuestaId = $encuestado['Encuesta']['id'];
-	    $this->Pregunta->unBindModel(array('belongsTo'=>array('Encuesta')));
-	    $options = array('conditions' => array('Pregunta.encuesta_id' => $encuestaId));
-	    $preguntas = $this->Pregunta->find('all', $options);
-	    
-	    foreach ($preguntas as $i => $pregunta){
-	        foreach ($pregunta['Opcion'] as $j => $opcion){
-	            $options = array('conditions' => array('Respuesta.opcion_id' => $opcion['id'],
-	                'Respuesta.encuestado_id' => $id));
-	            $this->Respuesta->recursive = -1;
-	            $respuesta = $this->Respuesta->find('first', $options);
-	            
-	            if (!empty($respuesta)){
-	                $preguntas[$i]['Opcion'][$j]['checked'] = 'checked';
-	                $preguntas[$i]['Opcion'][$j]['Respuesta'] = $respuesta['Respuesta'];
-	            }else{
-	                $preguntas[$i]['Opcion'][$j]['checked'] = '';
-	            }
-	        }
-	    }
-	    
-	    $this->set(compact('encuestado', 'preguntas'));
+
+	    $this->set(compact('encuestado'));
 	}
 
 /**

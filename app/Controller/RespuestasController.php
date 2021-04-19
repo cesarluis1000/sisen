@@ -99,7 +99,7 @@ class RespuestasController extends AppController {
 	            $this->Respuesta->Encuestado->id=$encuestadoId;
 	            $this->Respuesta->Encuestado->saveField("estado","E");
 	            
-	            $this->Flash->success(__('The respuesta has been saved.'));
+	            $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
 	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
 	        } else {
 	            $this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
