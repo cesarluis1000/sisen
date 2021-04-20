@@ -93,17 +93,23 @@ class RespuestasController extends AppController {
 	    $encuestadoId = $encuestado['Encuestado']['id'];
 	    
 	    if ($this->request->is('post')) {
-	        $this->Respuesta->create();
-	        if ($this->Respuesta->saveMany($this->request->data)) {
-	            
-	            $this->Respuesta->Encuestado->id=$encuestadoId;
-	            $this->Respuesta->Encuestado->saveField("estado","E");
-	            
-	            $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
-	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
-	        } else {
-	            $this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
-	        }
+	        
+            $this->Respuesta->Encuestado->id=$encuestadoId;
+            $this->Respuesta->Encuestado->saveField("estado","E");
+            
+            $respuestas = Set::extract('/Respuesta[opcion_id>1]', $this->request->data);
+            if (!empty($respuestas)){
+    	        $this->Respuesta->create();
+    	        if ($this->Respuesta->saveMany($respuestas)) {
+    	            $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
+    	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
+    	        } else {
+    	            $this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
+    	        }
+            }else{
+                $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
+                return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
+            }
 	    }
 	    
 	    if ($encuestado['Encuestado']['estado'] =='E'){

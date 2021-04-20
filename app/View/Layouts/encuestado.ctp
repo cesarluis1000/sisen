@@ -21,7 +21,9 @@
 		echo $this->Html->css('bootstrap-datetimepicker.css');
 	?>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->	
-	<?php echo $this->Html->script('jquery-3.2.1.min.js'); ?>	
+	<?php echo $this->Html->script('jquery-3.2.1.min.js'); ?>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js"></script>
 	<?php echo $this->Html->script('Chart.min.js'); ?>
 	<?php echo $this->Html->css('font-awesome.min.css'); ?>
 	<?php echo $this->Html->css('elmundotec.css'); ?>

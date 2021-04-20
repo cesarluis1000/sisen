@@ -76,8 +76,31 @@ label {
 	
 	<div class="form-group">
 		<div class="col-sm-12">
-					<?php echo $this->Form->button('Votar', array('type' => 'submit','class'=>'btn btn-success'));  ?>
+					<?php echo $this->Form->button('Votar', array('type' => 'submit','class'=>'btn btn-success',
+					    //'onclick' => 'validacion()'
+					));  ?>
 		</div>
 	</div>
 		<?php echo $this->Form->end(); ?>
 </fieldset>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#RespuestaEncuestarForm').validate({
+        submitHandler: function(form) {
+
+        	if($('input[type="radio"]:checked').val() > 0){
+        		form.submit();
+            }else{
+            	var r = confirm("Su voto esta en blanco desea continuar?");
+    	      	if (r == true) {
+    	    	  	form.submit();
+    	      	} else {
+    	    	  	return false;
+    	      	}
+            }
+        }
+	});
+});
+
+</script>
