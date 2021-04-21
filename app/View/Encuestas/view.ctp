@@ -129,11 +129,11 @@
 			<th><?php echo 'nombre'; ?></th>
 			<th><?php echo 'app'; ?></th>
 			<th><?php echo 'apm'; ?></th>
-			<th><?php echo 'correo'; ?></th>
 			<th><?php echo 'telefono'; ?></th>
+			<th><?php echo 'correo'; ?></th>
+			<th><?php echo 'dni'; ?></th>
 			<th><?php echo 'enviado'; ?></th>
 			<th><?php echo 'estado'; ?></th>
-			<th><?php echo 'creador'; ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -144,14 +144,14 @@
 		<td><?php echo h($encuestado['Encuestado']['nombres']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['app']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['apm']); ?>&nbsp;</td>
-		<td><?php echo h($encuestado['Encuestado']['correo']); ?>&nbsp;</td>
 		<td><?php echo h($encuestado['Encuestado']['telefono']); ?>&nbsp;</td>
+		<td><?php echo h($encuestado['Encuestado']['correo']); ?>&nbsp;</td>
+		<td><?php echo h($encuestado['Encuestado']['dni']); ?>&nbsp;</td>
 		<td><?php echo h($a_correo_enviado[$encuestado['Encuestado']['correo_enviado']]); ?>&nbsp;</td>
 		<td><?php echo h($a_estados_encuestado[$encuestado['Encuestado']['estado']]); ?>&nbsp;</td>
-		<td><?php echo h($encuestado['Encuestado']['creador']); ?>&nbsp;</td>
 		<td class="actions">
 			<div <?php echo ($encuesta['Encuesta']['estado'] == 'A')?"":"class='hide'";?> >
-    			<?php echo ($encuestado['Encuestado']['estado'] == 'A')?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-list')), array('controller' => 'Respuestas', 'action' => 'add', $encuestado['Encuestado']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)):''; ?>
+    			<?php echo (in_array($encuestado['Encuestado']['estado'],array('A','B')))?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-list')), array('controller' => 'Respuestas', 'action' => 'add', $encuestado['Encuestado']['id']),array('class' => 'btn btn-default btn-xs','escape'=>false)):''; ?>
     			<?php echo ($encuestado['Encuestado']['estado'] == 'E')?$this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-eye-open')), array('controller' => 'Encuestados', 'action' => 'view', $encuestado['Encuestado']['id']),array('class' => 'btn btn-info btn-xs','escape'=>false)):''; ?>
     			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-edit')), array('controller' => 'Encuestados', 'action' => 'edit', $encuestado['Encuestado']['id']),array('class' => 'btn btn-warning btn-xs','escape'=>false)); ?>
     			<?php echo $this->Form->postLink($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-trash')), array('controller' => 'Encuestados', 'action' => 'delete', $encuestado['Encuestado']['id']),array('class' => 'btn btn-danger btn-xs','escape'=>false), __('Are you sure you want to delete # %s?', $encuestado['Encuestado']['id'])); ?>
@@ -166,8 +166,9 @@
     			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'fa fa-whatsapp')), 
     			    "https://wa.me/51{$s_telefono}/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para realizar la encuesta:* %0a{$enlace}",
     			    array('class' => 'btn btn-success btn-xs','target'=>'_blank','escape'=>false)); ?>
+    			<?php $logon_video = Router::url('/Encuestas/login_video', true); ?>
     			<?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-facetime-video')), 
-    			    "https://wa.me/51{$s_telefono}/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para ingresar al video llamada:* %0a{$encuesta['Encuesta']['enlace_zoom']}",
+    			    "https://wa.me/51{$s_telefono}/?text=*Cooperativa San Francisco* %0a*Nombres:* {$s_encuestado} %0a*Dni:* {$s_dni} %0a*Encuesta:* {$s_encuesta} %0a*Click para ingresar al video llamada:* %0a{$logon_video}",
     			    array('class' => 'btn btn-success btn-xs','target'=>'_blank','escape'=>false)); ?>
     		</div>
 		</td>

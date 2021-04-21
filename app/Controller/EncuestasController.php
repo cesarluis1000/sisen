@@ -63,10 +63,15 @@ class EncuestasController extends AppController {
 	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
 	                                               'Encuesta.fecha_inicio >=' => date("Y-m-d", strtotime("-1 week")),
 	                                               'Encuesta.estado' => 'A',
-	                                               'Encuestado.estado' => 'A',
+	                                               'Encuestado.estado' => array('A','B')
 	                                               ));
-	        $encuestado = $this->Encuestado->find('count', $options);
-	        if ($encuestado > 0) {
+	        
+	        $encuestados = $this->Encuestado->find('first', $options);
+	        $nro_encuestado = $this->Encuestado->find('count', $options);
+	        
+	        if ($nro_encuestado > 0) {
+	            $this->Encuestado->id=$encuestados['Encuestado']['id'];
+	            $this->Encuestado->saveField("estado","B");
 	            $this->Session->write('Encuestado', $this->request->data['Encuestado']);
 	            return $this->redirect(array('action' => 'enlace_video'));
 	        } else {
@@ -84,7 +89,7 @@ class EncuestasController extends AppController {
 	        $options = array('conditions' => array('Encuestado.correo' => $this->request->data['Encuestado']['correo'],
 	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
                                     	            'Encuesta.estado' => 'A',
-                                    	            'Encuestado.estado' => 'A',
+	                                               'Encuestado.estado' => array('A','B'),
 	                                               'Encuesta.fecha_inicio >=' => date("Y-m-d", strtotime("-1 week")),
 	                       ),
 	            'order' => array('Encuesta.fecha_inicio')
@@ -114,6 +119,12 @@ class EncuestasController extends AppController {
 	                                           'Encuestado.estado'=>'E'));
 	    $nro_encuestados = $this->Encuestado->find('count', $options);
 	    //pr($nro_encuestados);
+	    
+	    $this->Encuestado->recursive = -1;
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
+	                                           'Encuestado.estado'=>'B'));
+	    $nro_abstencion = $this->Encuestado->find('count', $options);
+	    //pr($nro_abstencion);
 	    
 	    $this->Pregunta->unBindModel(array('belongsTo'=>array('Encuesta')));
 	    $options = array('conditions' => array('Pregunta.encuesta_id' => $id));
@@ -172,12 +183,13 @@ class EncuestasController extends AppController {
 	        }
 	        
 	        //pr($a_opciones);
-	        $i_blanco = $nro_encuestados-$i_respuesta_pregunta;
+	        $i_quorum = $nro_encuestados + $nro_abstencion;
+	        $i_blanco = $nro_encuestados - $i_respuesta_pregunta;
 	        $config["data"] = [
 	                           "labels" => $a_opciones,
                 	           "datasets" => [
                     	                   [
-                    	                       "label" => "Total:{$nro_encuestados}, Votos:{$i_respuesta_pregunta}, Blanco:{$i_blanco} => {$pregunta['Pregunta']['nombre']}",
+                    	                       "label" => "Total:{$i_quorum}, Votos:{$i_respuesta_pregunta}, Abstenciones:{$nro_abstencion}, Blanco:{$i_blanco} => {$pregunta['Pregunta']['nombre']}",
                             	                "data" => $a_respuestas,
                             	                "backgroundColor" => $a_backgroundColor,
                             	                "borderColor" => $a_borderColor,
