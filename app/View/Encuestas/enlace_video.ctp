@@ -21,7 +21,7 @@
 		<dt><?php echo __('Enlace de Video'); ?></dt>
 		<dd>
             <?php echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-facetime-video')).__(' Click Aquí'), 
-                $encuesta['Encuesta']['enlace_zoom'] ,array('class' => 'btn btn-primary','escape'=>false)); ?>
+                trim($encuesta['Encuesta']['enlace_zoom']) ,array('class' => 'btn btn-primary','escape'=>false)); ?>
 		</dd>
 	</dl>
 </fieldset>
