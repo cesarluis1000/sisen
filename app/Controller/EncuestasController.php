@@ -100,17 +100,26 @@ class EncuestasController extends AppController {
 	
 	public function grafico($id = null) {
 	    
+	    $this->loadModel('Encuestado');
 	    $this->loadModel('Pregunta');
 	    $this->loadModel('Respuesta');
 	    
 	    $this->Encuesta->recursive = -1;
 	    $options = array('conditions' => array('Encuesta.' . $this->Encuesta->primaryKey => $id));
 	    $encuesta = $this->Encuesta->find('first', $options);
+	    //pr($encuesta);
+	    
+	    $this->Encuestado->recursive = -1;
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
+	                                           'Encuestado.estado'=>'E'));
+	    $nro_encuestados = $this->Encuestado->find('count', $options);
+	    //pr($nro_encuestados);
 	    
 	    $this->Pregunta->unBindModel(array('belongsTo'=>array('Encuesta')));
 	    $options = array('conditions' => array('Pregunta.encuesta_id' => $id));
 	    $preguntas = $this->Pregunta->find('all',$options);
-    
+	    //pr($preguntas);
+	    
 	    $config = [
 	        "type" => "bar",
              "options" => [
@@ -150,7 +159,8 @@ class EncuestasController extends AppController {
 	        $a_respuestas = null;
 	        $a_backgroundColor = null;
 	        $a_borderColor = null;
-	        $i_respuesta_pregunta =0; 
+	        $i_respuesta_pregunta =0;
+	        $i_blanco =0;
 	        foreach ($pregunta['Opcion'] as $j => $opcion){
 	            $a_opciones[] = $opcion['nombre'];
 	            $options = array('conditions' => array('Respuesta.opcion_id' => $opcion['id']));
@@ -162,12 +172,12 @@ class EncuestasController extends AppController {
 	        }
 	        
 	        //pr($a_opciones);
-	        
+	        $i_blanco = $nro_encuestados-$i_respuesta_pregunta;
 	        $config["data"] = [
 	                           "labels" => $a_opciones,
                 	           "datasets" => [
                     	                   [
-                            	                "label" => "Total:{$i_respuesta_pregunta} => Pregunta: {$pregunta['Pregunta']['nombre']}",
+                    	                       "label" => "Total:{$nro_encuestados}, Votos:{$i_respuesta_pregunta}, Blanco:{$i_blanco} => {$pregunta['Pregunta']['nombre']}",
                             	                "data" => $a_respuestas,
                             	                "backgroundColor" => $a_backgroundColor,
                             	                "borderColor" => $a_borderColor,
