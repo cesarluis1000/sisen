@@ -61,7 +61,7 @@ class EncuestasController extends AppController {
 	        $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
 	        $options = array('conditions' => array('Encuestado.correo' => $this->request->data['Encuestado']['correo'],
 	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
-	                                               'Encuesta.fecha_inicio >=' => date("Y-m-d", strtotime("-1 week")),
+	                                               //'Encuesta.fecha_inicio >=' => date("Y-m-d", strtotime("-1 week")),
 	                                               'Encuesta.estado' => 'A',
 	                                               'Encuestado.estado' => array('A','B')
 	                                               ));
