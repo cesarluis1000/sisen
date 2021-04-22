@@ -64,7 +64,7 @@ class EncuestasController extends AppController {
 	        $options = array('conditions' => array('Encuestado.telefono' => $this->request->data['Encuestado']['telefono'],
 	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
 	                                               'Encuesta.hash' => $this->request->data['Encuesta']['hash'],
-	                                               //'Encuesta.fecha_inicio >=' => date("Y-m-d", strtotime("-1 week")),
+	                                               'Encuesta.fecha_fin <=' => date("Y-m-d h:i:s"),
 	                                               'Encuesta.estado' => 'A',
 	                                               'Encuestado.estado' => array('A','B')
 	                                               ));
