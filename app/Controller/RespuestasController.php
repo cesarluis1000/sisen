@@ -56,25 +56,42 @@ class RespuestasController extends AppController {
  */
 	public function add($encuestadoId = null) {
 	    $this->loadModel('Pregunta');
-	    
-	    if ($this->request->is('post')) {	        
-			$this->Respuesta->create();
-			if ($this->Respuesta->saveMany($this->request->data)) {
-			    
-			    $this->Respuesta->Encuestado->id=$encuestadoId;
-			    $this->Respuesta->Encuestado->saveField("estado","E");
-			    
-				$this->Flash->success(__('The respuesta has been saved.'));
-				return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
-			} else {
-				$this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
-			}
-		}
-		$this->Respuesta->Encuestado->recursive = 0;
-		$encuestado = $this->Respuesta->Encuestado->findById($encuestadoId);
+	    $this->loadModel('Encuestado');
+		$this->Encuestado->recursive = 0;
+		$encuestado = $this->Encuestado->findById($encuestadoId);
 		
 		if ($encuestado['Encuestado']['estado'] =='E'){
 		    return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
+		}
+	    
+	    if ($this->request->is('post')) {	        
+	        
+	        $datasource = $this->Respuesta->getDataSource();
+	        
+	        try{
+	            $datasource->begin();
+	            
+	            $this->Encuestado->id=$encuestadoId;
+	            if (!$this->Encuestado->saveField("estado","E")){
+	                throw new Exception('Error al registrar la encuesta');
+	            }
+	            
+	            $respuestas = Set::extract('/Respuesta[opcion_id>1]', $this->request->data);
+	            if (!empty($respuestas)){
+	                $this->Respuesta->create();
+	                if (!$this->Respuesta->saveMany($respuestas)) {
+	                    throw new Exception(__('El encuestado y la opcion combinación ya ha sido utilizada'));
+	                }
+	            }
+	            
+	            $datasource->commit();
+	            $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
+	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
+	            
+	        }catch(Exception $e){
+	            $datasource->rollback();
+	            $this->Flash->error($e);
+	        }
 		}
 		
 		$encuestaId = $encuestado['Encuesta']['id'];
@@ -92,28 +109,39 @@ class RespuestasController extends AppController {
 	    $encuestado = $this->Encuestado->find('first', $options);
 	    $encuestadoId = $encuestado['Encuestado']['id'];
 	    
-	    if ($this->request->is('post')) {
-	        
-            $this->Respuesta->Encuestado->id=$encuestadoId;
-            $this->Respuesta->Encuestado->saveField("estado","E");
-            
-            $respuestas = Set::extract('/Respuesta[opcion_id>1]', $this->request->data);
-            if (!empty($respuestas)){
-    	        $this->Respuesta->create();
-    	        if ($this->Respuesta->saveMany($respuestas)) {
-    	            $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
-    	            return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
-    	        } else {
-    	            $this->Flash->error(__('The respuesta could not be saved. Please, try again.'));
-    	        }
-            }else{
-                $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
-                return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
-            }
-	    }
-	    
 	    if ($encuestado['Encuestado']['estado'] =='E'){
 	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
+	    }
+	    
+	    if ($this->request->is('post')) {
+	        
+	        $datasource = $this->Respuesta->getDataSource();
+	        
+	        try{
+	            $datasource->begin();
+	        
+                $this->Encuestado->id=$encuestadoId;
+                if (!$this->Encuestado->saveField("estado","E")){
+                    throw new Exception('Error al registrar la encuesta');
+                }
+                
+                $respuestas = Set::extract('/Respuesta[opcion_id>1]', $this->request->data);
+                if (!empty($respuestas)){
+        	        $this->Respuesta->create();
+        	        if (!$this->Respuesta->saveMany($respuestas)) {
+        	            throw new Exception(__('El encuestado y la opcion combinación ya ha sido utilizada'));
+        	        }
+                }
+                
+                $datasource->commit();
+                $this->Flash->success(__('Gracias por participar en nuestra encuesta'));
+                return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
+	            
+	        }catch(Exception $e){
+	            $datasource->rollback();
+	            $this->Flash->error($e);
+	        }
+            
 	    }
 	    
 	    $encuestaId = $encuestado['Encuesta']['id'];

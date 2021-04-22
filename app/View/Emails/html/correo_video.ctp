@@ -25,4 +25,4 @@
 		</dd>
 	</dl>
 </fieldset>
-<p>Click para Video <a href="<?php echo Router::url('/Encuestas/login_video', true);?>">Aquí</a></p>
+<p>Click para Video <a href="<?php echo Router::url('/Encuestas/login_video/'.$hash, true);?>">Aquí</a></p>

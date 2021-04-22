@@ -14,16 +14,16 @@ class Respuesta extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'opcion_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+	    'opcion_id' => array(
+            'rule' => array(
+                'isUnique', array(
+                                    'opcion_id', 
+                                    'encuestado_id'
+                                ), 
+                            false
+                        ),
+            'message' => 'El encuestado y la opcion combinación ya ha sido utilizada'
+        ),
 		'encuestado_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
