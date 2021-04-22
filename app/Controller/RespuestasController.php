@@ -105,7 +105,8 @@ class RespuestasController extends AppController {
 	    $this->loadModel('Pregunta');
 	    $this->loadModel('Encuestado');
 	    $this->Encuestado->recursive = 0;
-	    $options = array('conditions' => array('Encuestado.hash' => $hash));
+	    $options = array('conditions' => array('Encuesta.fecha_fin <' => date("Y-m-d h:i:s"),
+	                                           'Encuestado.hash' => $hash));
 	    $encuestado = $this->Encuestado->find('first', $options);
 	    $encuestadoId = $encuestado['Encuestado']['id'];
 	    
