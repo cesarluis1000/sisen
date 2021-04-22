@@ -60,7 +60,14 @@ class RespuestasController extends AppController {
 		$this->Encuestado->recursive = 0;
 		$encuestado = $this->Encuestado->findById($encuestadoId);
 		
+		if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
+		    $fecha_fin = date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin']));
+		    $this->Flash->error(__("Encuesta finalizada: {$fecha_fin} "));
+		    return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
+		}
+		
 		if ($encuestado['Encuestado']['estado'] =='E'){
+		    $this->Flash->error(__("Usuario ya encuestado"));
 		    return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
 		}
 	    
@@ -105,14 +112,21 @@ class RespuestasController extends AppController {
 	    $this->loadModel('Pregunta');
 	    $this->loadModel('Encuestado');
 	    $this->Encuestado->recursive = 0;
-	    $options = array('conditions' => array('Encuesta.fecha_fin <' => date("Y-m-d h:i:s"),
-	                                           'Encuestado.hash' => $hash));
+	    $options = array('conditions' => array('Encuestado.hash' => $hash));
 	    $encuestado = $this->Encuestado->find('first', $options);
-	    $encuestadoId = $encuestado['Encuestado']['id'];
 	    
-	    if ($encuestado['Encuestado']['estado'] =='E'){
+	    if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
+	        $fecha_fin = date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin']));
+	        $this->Flash->error(__("Encuesta finalizada: {$fecha_fin} "));
 	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
 	    }
+	    
+	    if ($encuestado['Encuestado']['estado'] =='E'){
+	        $this->Flash->error(__("Usuario ya encuestado"));
+	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
+	    }
+	    
+	    $encuestadoId = $encuestado['Encuestado']['id'];
 	    
 	    if ($this->request->is('post')) {
 	        

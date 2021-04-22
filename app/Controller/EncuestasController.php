@@ -64,25 +64,29 @@ class EncuestasController extends AppController {
 	        $options = array('conditions' => array('Encuestado.telefono' => $this->request->data['Encuestado']['telefono'],
 	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
 	                                               'Encuesta.hash' => $this->request->data['Encuesta']['hash'],
-	                                               'Encuesta.fecha_fin <=' => date("Y-m-d h:i:s"),
 	                                               'Encuesta.estado' => 'A',
 	                                               'Encuestado.estado' => array('A','B')
 	                                               ));
 	        
-	        $encuestados = $this->Encuestado->find('first', $options);
-	        //pr($encuestados);
-	        //exit;
+	        $encuestado = $this->Encuestado->find('first', $options);
+	        
+	        if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
+	            $fecha_fin = date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin']));
+	            $this->Flash->error(__("Encuesta finalizada: {$fecha_fin} "));
+	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'login_video', $this->request->data['Encuesta']['hash']));
+	        }
+	        
 	        $nro_encuestado = $this->Encuestado->find('count', $options);
 	        
 	        if ($nro_encuestado > 0) {
-	            $this->Encuestado->id=$encuestados['Encuestado']['id'];
+	            $this->Encuestado->id=$encuestado['Encuestado']['id'];
 	            $this->Encuestado->saveField("estado","B");
 	            $this->Session->write('Encuesta', $this->request->data['Encuesta']);
 	            $this->Session->write('Encuestado', $this->request->data['Encuestado']);
 	            return $this->redirect(array('action' => 'enlace_video'));
 	        } else {
 	            $this->Flash->error(__('Tu telefono o password fue incorrecto.'));
-	            return $this->redirect(array('controller' => 'Encuesta', 'action' => 'login_video', $this->request->data['Encuesta']['hash']));
+	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'login_video', $this->request->data['Encuesta']['hash']));
 	        }
 	    }
 	    $this->set(compact('hash'));

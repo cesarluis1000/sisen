@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-04-2021 a las 17:16:06
+-- Tiempo de generación: 22-04-2021 a las 08:41:50
 -- Versión del servidor: 10.3.28-MariaDB-cll-lve
 -- Versión de PHP: 7.3.27
 
@@ -199,13 +199,8 @@ CREATE TABLE `cake_sessions` (
 --
 
 INSERT INTO `cake_sessions` (`id`, `data`, `expires`) VALUES
-('6aaktus92sc4il7lptk6jq1j32', 'Config|a:3:{s:9:\"userAgent\";s:32:\"d219a329493b3207e8e8dd94271dbde8\";s:4:\"time\";i:1619042359;s:9:\"countdown\";i:10;}Message|a:0:{}', 1619042359),
-('f8kmo3ifiv3fltf8drl3nenbg5', 'Config|a:3:{s:9:\"userAgent\";s:32:\"e0fe61737b81db681501ad73d49f44e9\";s:4:\"time\";i:1619043348;s:9:\"countdown\";i:10;}Auth|a:1:{s:4:\"User\";a:13:{s:2:\"id\";s:1:\"1\";s:7:\"nombres\";N;s:3:\"app\";N;s:3:\"apm\";N;s:6:\"correo\";N;s:8:\"username\";s:6:\"cramos\";s:8:\"group_id\";s:1:\"1\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:24:19\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;s:5:\"Group\";a:7:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:13:\"Administrador\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:19:00\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;}}}Message|a:0:{}', 1619043348),
-('g60rp1bb4aikrib7os00vnbia2', 'Config|a:3:{s:9:\"userAgent\";s:32:\"d219a329493b3207e8e8dd94271dbde8\";s:4:\"time\";i:1619043062;s:9:\"countdown\";i:10;}Message|a:0:{}', 1619043062),
-('g9k0e3vih8jqadbfqh6jmhrht0', 'Config|a:3:{s:9:\"userAgent\";s:32:\"b248d19b2e59aa86e5c067b11039cd0e\";s:4:\"time\";i:1619043331;s:9:\"countdown\";i:10;}Message|a:0:{}', 1619043331),
-('noenc9k7kehec55046built9g1', 'Config|a:3:{s:9:\"userAgent\";s:32:\"e0fe61737b81db681501ad73d49f44e9\";s:4:\"time\";i:1619043344;s:9:\"countdown\";i:10;}Message|a:1:{s:4:\"auth\";a:4:{s:7:\"message\";s:51:\"No está autorizado para acceder a esta aplicación\";s:3:\"key\";s:4:\"auth\";s:7:\"element\";s:13:\"Flash/default\";s:6:\"params\";a:0:{}}}Auth|a:1:{s:4:\"User\";a:13:{s:2:\"id\";s:1:\"1\";s:7:\"nombres\";N;s:3:\"app\";N;s:3:\"apm\";N;s:6:\"correo\";N;s:8:\"username\";s:6:\"cramos\";s:8:\"group_id\";s:1:\"1\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:24:19\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;s:5:\"Group\";a:7:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:13:\"Administrador\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:19:00\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;}}}', 1619043344),
-('pkti9qbq8r3orsn6rn8dlml9m2', 'Config|a:3:{s:9:\"userAgent\";s:32:\"d219a329493b3207e8e8dd94271dbde8\";s:4:\"time\";i:1619043132;s:9:\"countdown\";i:10;}Message|a:0:{}', 1619043132),
-('uvvs6q123jum5kpd9mceao67d1', 'Config|a:3:{s:9:\"userAgent\";s:32:\"a88110de369fbbdeaacea3be9a7aa607\";s:4:\"time\";i:1619042277;s:9:\"countdown\";i:10;}Message|a:0:{}', 1619042278);
+('i1hunfu9l0qphb13scuuqeq817', 'Config|a:3:{s:9:\"userAgent\";s:32:\"e0fe61737b81db681501ad73d49f44e9\";s:4:\"time\";i:1619098865;s:9:\"countdown\";i:10;}Message|a:1:{s:4:\"auth\";a:4:{s:7:\"message\";s:51:\"No está autorizado para acceder a esta aplicación\";s:3:\"key\";s:4:\"auth\";s:7:\"element\";s:13:\"Flash/default\";s:6:\"params\";a:0:{}}}Auth|a:1:{s:4:\"User\";a:13:{s:2:\"id\";s:1:\"1\";s:7:\"nombres\";N;s:3:\"app\";N;s:3:\"apm\";N;s:6:\"correo\";N;s:8:\"username\";s:6:\"cramos\";s:8:\"group_id\";s:1:\"1\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:24:19\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;s:5:\"Group\";a:7:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:13:\"Administrador\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:19:00\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;}}}', 1619098865),
+('in83e6ffrd4733pv8ho63bk8j5', 'Config|a:3:{s:9:\"userAgent\";s:32:\"20b5c085367b3a797867c77a16fd61e0\";s:4:\"time\";i:1619069708;s:9:\"countdown\";i:10;}Auth|a:1:{s:4:\"User\";a:13:{s:2:\"id\";s:1:\"1\";s:7:\"nombres\";N;s:3:\"app\";N;s:3:\"apm\";N;s:6:\"correo\";N;s:8:\"username\";s:6:\"cramos\";s:8:\"group_id\";s:1:\"1\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:24:19\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;s:5:\"Group\";a:7:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:13:\"Administrador\";s:6:\"estado\";s:1:\"A\";s:7:\"creador\";s:6:\"cramos\";s:6:\"creado\";s:19:\"2017-04-26 01:19:00\";s:11:\"modificador\";s:0:\"\";s:10:\"modificado\";N;}}}Message|a:0:{}', 1619069709);
 
 -- --------------------------------------------------------
 
@@ -269,7 +264,7 @@ INSERT INTO `encuestados` (`id`, `nombres`, `app`, `apm`, `dni`, `telefono`, `co
 (30, 'JHONATAN NIELS', 'MACHUCA ', 'VERDE', '44116017', '947476491', 'j.machuca@cacsf.pe', 'N', NULL, 'e61726b2a962614a712c591b1d1b63f1', 7, 'A', 'cramos', '2021-04-09 14:40:41', NULL, NULL),
 (31, 'CRECIA THALIA', 'TRUJILLO ', 'MELCHOR ', '47240211', '996930900', 'c.trujillo@cacsf.pe', 'N', NULL, 'd6ff8063ce0b2df3e949ab8a61650462', 7, 'A', 'cramos', '2021-04-09 14:41:25', NULL, NULL),
 (32, 'BECKER DAVID', 'ACOSTA', 'LOPEZ', '42674788', '943811875', 'jespinoza@cacsf.pe', 'N', NULL, '8eb9e9d7eae62531706eca3d95150642', 7, 'E', 'cramos', '2021-04-09 14:42:04', 'cramos', '2021-04-09 15:28:57'),
-(33, 'Cristhian', 'Ramos ', 'Cueva', '98565214', '989231175', 'cristhianramoscueva@gmail.com', 'N', NULL, '8916418557ccb66c1b4747e293e60630', 8, 'A', 'cramos', '2021-04-14 01:27:00', 'cramos', '2021-04-16 16:35:48'),
+(33, 'Cristhian', 'Ramos ', 'Cueva', '98565214', '989231175', 'cristhianramoscueva@gmail.com', 'N', NULL, '8916418557ccb66c1b4747e293e60630', 8, 'A', 'cramos', '2021-04-14 01:27:00', 'cramos', '2021-04-21 23:34:29'),
 (34, 'JOHAN NEISEL', 'ESPINOZA ', 'soria', '42041946', '913701117', 'jespinoza@cacsf.pe', 'N', NULL, '1a78bbd89a9634168881083384326960', 9, 'A', 'cramos', '2021-04-15 12:01:36', NULL, NULL),
 (35, 'Miguel ', 'Claudio', 'Berrospi', '41942046', '999262088', 'm.claudio@cacsf.pe', 'N', NULL, '02660f0c3ebd52a57707b0581301aff0', 9, 'E', 'cramos', '2021-04-15 12:02:40', NULL, NULL),
 (36, 'clauido', 'miguel ', 'Berrospi', '5146513', '931856255', 'm.claudio@cacsanfrancisco.com', 'N', NULL, '1ccb94105cee882f0656ae99563ebb9c', 9, 'A', 'cramos', '2021-04-15 12:25:17', NULL, NULL),
@@ -282,13 +277,13 @@ INSERT INTO `encuestados` (`id`, `nombres`, `app`, `apm`, `dni`, `telefono`, `co
 (43, 'Miguel', 'berrospi', 'claudio', '43135773', '962703545', 'm.claudio@cacsanfrancisco.com', 'N', NULL, 'ef3c3e89a0e254d428a78d6d1d934fbe', 11, 'A', 'cramos', '2021-04-20 11:24:58', NULL, NULL),
 (44, 'Jose', 'VALDIVIA ', 'JAIMES', '48152730', '947544288', 'j.valdivia@cacssanfrancisco.com', 'N', NULL, 'f1ecb54e97fedccbe611451067675306', 11, 'A', 'cramos', '2021-04-20 11:26:37', NULL, NULL),
 (45, 'neisel', 'johan', 'soria', '42684024', '998886686', 'cesarluis1000@yahoo.com', 'N', NULL, '489939076f8b22975aa2c791e508a145', 11, 'B', 'cramos', '2021-04-21 11:07:13', 'cramos', '2021-04-21 14:50:40'),
-(46, 'CARLOS ALBERTO', 'URIBE', 'ANTONIO', '08551377', '994727584', 'c.uribe@cacsanfrancisco.com', 'N', NULL, 'ebc943ed43c80a0550795e27a6220020', 12, 'A', 'cramos', '2021-04-21 14:04:42', 'cramos', '2021-04-21 16:06:41'),
+(46, 'CARLOS ALBERTO', 'URIBE', 'ANTONIO', '08551377', '994727584', 'c.uribe@cacsanfrancisco.com', 'N', NULL, 'ebc943ed43c80a0550795e27a6220020', 12, 'B', 'cramos', '2021-04-21 14:04:42', 'cramos', '2021-04-21 16:06:41'),
 (47, 'MARCO ANTONIO', 'VILLAVICENCIO', 'GUARDIA', '22498668', '962683344', 'm.villavicencio@cacsanfrancisco.com', 'N', NULL, '062f1bae6a38b82ab834ab5aecf70ebf', 12, 'E', 'cramos', '2021-04-21 14:05:22', 'cramos', '2021-04-21 16:06:48'),
 (48, 'OMAYRA', 'CACHAY', 'SUAREZ', '43546273', '931856255', 'o.cachay@cacsanfrancisco.com', 'N', NULL, 'f8b351b164544ccc8c8d7c3378462fcc', 12, 'A', 'cramos', '2021-04-21 14:07:16', NULL, NULL),
 (49, 'FERNANDO AUGUSTO', 'CALDERON', 'JUAREZ', '43177536', '962983008', 'fcalderon@cacsanfrancisco.com', 'N', NULL, '8c006f9f71e880676b8477b7cfde289e', 12, 'E', 'cramos', '2021-04-21 14:08:07', 'cramos', '2021-04-21 16:07:12'),
 (50, 'JOSE ANTONIO', 'VALDIVIA ', 'JAIMES', '48152730', '947544288', 'jvaldivia@cacsanfrancisco.com', 'N', NULL, 'feb75677a488abc04a3216e9e35e9697', 12, 'A', 'cramos', '2021-04-21 14:08:47', NULL, NULL),
 (51, 'JOHAN NEISEL', 'ESPINOZA ', 'SORIA', '42041946', '913701117', 'jespinoza@casanfrancisco.com', 'N', NULL, '8ae49b13ffb7ec301e802608f9d6afa0', 12, 'E', 'cramos', '2021-04-21 14:09:12', 'cramos', '2021-04-21 16:07:02'),
-(52, 'JHONATAN NIELS', 'MACHUCA ', 'VERDE', '94747649', '44116017', 'j.machuca@cacsanfrancisco.com', 'N', NULL, 'ab6e8f8562057a7b5071bbc09b4fb723', 12, 'A', 'cramos', '2021-04-21 14:09:55', NULL, NULL);
+(52, 'JHONATAN NIELS', 'MACHUCA ', 'VERDE', '94747649', '44116017', 'j.machuca@cacsanfrancisco.com', 'Y', NULL, 'ab6e8f8562057a7b5071bbc09b4fb723', 12, 'E', 'cramos', '2021-04-21 14:09:55', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -302,6 +297,7 @@ CREATE TABLE `encuestas` (
   `fecha_inicio` datetime NOT NULL,
   `fecha_fin` datetime NOT NULL,
   `enlace_zoom` varchar(255) DEFAULT NULL,
+  `hash` varchar(255) DEFAULT NULL,
   `estado` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'A',
   `creador` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `creado` datetime DEFAULT NULL,
@@ -313,19 +309,19 @@ CREATE TABLE `encuestas` (
 -- Volcado de datos para la tabla `encuestas`
 --
 
-INSERT INTO `encuestas` (`id`, `nombre`, `fecha_inicio`, `fecha_fin`, `enlace_zoom`, `estado`, `creador`, `creado`, `modificador`, `modificado`) VALUES
-(1, 'Elecciones generales 2021', '2021-04-05 17:34:30', '2021-04-05 17:34:33', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09', 'D', 'cramos', '2021-04-05 17:34:39', 'cramos', '2021-04-20 09:55:36'),
-(2, 'Elecciones generales 2022', '2021-04-05 20:22:38', '2021-04-05 20:22:40', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09', 'A', 'cramos', '2021-04-05 20:35:07', NULL, NULL),
-(3, 'Elecciones generales 2023', '2021-04-05 21:22:16', '2021-04-05 21:22:19', '', 'A', 'cramos', '2021-04-05 21:22:29', NULL, NULL),
-(4, 'Elecciones generales 2024', '2021-04-07 22:23:32', '2021-04-07 22:23:34', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09', 'A', 'cramos', '2021-04-07 22:23:39', NULL, NULL),
-(5, 'Elecciones generales 2025', '2021-04-24 16:00:00', '2021-04-24 16:30:00', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09  ', 'A', 'cramos', '2021-04-07 23:40:21', 'cramos', '2021-04-21 15:31:47'),
-(6, 'Cooperativa San Francisco', '2021-04-08 11:46:10', '2021-04-08 11:46:12', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09  ', 'A', 'cramos', '2021-04-08 11:47:47', 'cramos', '2021-04-16 01:37:28'),
-(7, 'ENCUESTA PRUEBA', '2021-04-10 15:20:26', '2021-04-10 17:42:59', '', 'A', 'cramos', '2021-04-08 13:43:19', 'cramos', '2021-04-09 15:52:02'),
-(8, 'ENCUENTA PRUEBA 2', '2021-04-09 15:20:08', '2021-04-09 17:50:25', '', 'A', 'cramos', '2021-04-08 13:50:38', NULL, NULL),
-(9, 'encuesta prueba 3', '2021-04-15 13:30:06', '2021-04-16 17:56:29', 'https://zoom.us/j/99035095167?pwd=NHBmU05ZYVVCeERrdXhVaGdZOXdTUT09', 'D', 'cramos', '2021-04-15 11:59:36', 'cramos', '2021-04-17 08:51:54'),
-(10, 'Elecciones 4', '2021-04-17 09:52:15', '2021-04-17 11:52:26', 'https://zoom.us/j/91815347584?pwd=ZDA3Q1hjVzdlREZObUc0Z21BdEFyZz09', 'A', 'cramos', '2021-04-17 08:54:06', 'cramos', '2021-04-17 09:04:38'),
-(11, 'encuesta prueba 6', '2021-04-21 11:24:52', '2021-04-21 11:50:08', 'https://zoom.us/j/95532564243?pwd=SkFJUlJHZDBRT1BtRHdaZ0NPZlBqdz09', 'A', 'cramos', '2021-04-20 11:20:38', 'cramos', '2021-04-21 11:07:35'),
-(12, 'ENCUESTA PRUEBA 8', '2021-04-21 15:00:29', '2021-04-21 16:30:00', 'https://zoom.us/j/91271627913?pwd=SngzcXVzTzRxWnNaa0J1eEpnU0xiQT09', 'A', 'cramos', '2021-04-21 11:59:20', 'cramos', '2021-04-21 16:15:47');
+INSERT INTO `encuestas` (`id`, `nombre`, `fecha_inicio`, `fecha_fin`, `enlace_zoom`, `hash`, `estado`, `creador`, `creado`, `modificador`, `modificado`) VALUES
+(1, 'Elecciones generales 2021', '2021-04-05 17:34:30', '2021-04-05 17:34:33', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09', 'c4ca4238a0b923820dcc509a6f75849b', 'D', 'cramos', '2021-04-05 17:34:39', 'cramos', '2021-04-20 09:55:36'),
+(2, 'Elecciones generales 2022', '2021-04-05 20:22:38', '2021-04-05 20:22:40', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09', 'c81e728d9d4c2f636f067f89cc14862c', 'A', 'cramos', '2021-04-05 20:35:07', NULL, NULL),
+(3, 'Elecciones generales 2023', '2021-04-05 21:22:16', '2021-04-05 21:22:19', '', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 'A', 'cramos', '2021-04-05 21:22:29', NULL, NULL),
+(4, 'Elecciones generales 2024', '2021-04-07 22:23:32', '2021-04-07 22:23:34', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09', 'a87ff679a2f3e71d9181a67b7542122c', 'A', 'cramos', '2021-04-07 22:23:39', NULL, NULL),
+(5, 'Elecciones generales 2025', '2021-04-24 16:00:00', '2021-04-24 16:30:00', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09  ', 'e4da3b7fbbce2345d7772b0674a318d5', 'A', 'cramos', '2021-04-07 23:40:21', 'cramos', '2021-04-21 15:31:47'),
+(6, 'Cooperativa San Francisco', '2021-04-08 11:46:10', '2021-04-08 11:46:12', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09  ', '1679091c5a880faf6fb5e6087eb1b2dc', 'A', 'cramos', '2021-04-08 11:47:47', 'cramos', '2021-04-16 01:37:28'),
+(7, 'ENCUESTA PRUEBA', '2021-04-10 15:20:26', '2021-04-10 17:42:59', '', '8f14e45fceea167a5a36dedd4bea2543', 'A', 'cramos', '2021-04-08 13:43:19', 'cramos', '2021-04-09 15:52:02'),
+(8, 'ENCUENTA PRUEBA 2', '2021-04-09 15:20:08', '2021-04-09 17:50:25', 'https://us05web.zoom.us/j/5641667630?pwd=bXhNSktpUWZiM25GZDFId3VwWTd1Zz09  ', 'c9f0f895fb98ab9159f51fd0297e236d', 'A', 'cramos', '2021-04-08 13:50:38', 'cramos', '2021-04-21 23:30:18'),
+(9, 'encuesta prueba 3', '2021-04-15 13:30:06', '2021-04-16 17:56:29', 'https://zoom.us/j/99035095167?pwd=NHBmU05ZYVVCeERrdXhVaGdZOXdTUT09', '45c48cce2e2d7fbdea1afc51c7c6ad26', 'D', 'cramos', '2021-04-15 11:59:36', 'cramos', '2021-04-17 08:51:54'),
+(10, 'Elecciones 4', '2021-04-17 09:52:15', '2021-04-17 11:52:26', 'https://zoom.us/j/91815347584?pwd=ZDA3Q1hjVzdlREZObUc0Z21BdEFyZz09', 'd3d9446802a44259755d38e6d163e820', 'A', 'cramos', '2021-04-17 08:54:06', 'cramos', '2021-04-17 09:04:38'),
+(11, 'encuesta prueba 6', '2021-04-21 11:24:52', '2021-04-21 11:50:08', 'https://zoom.us/j/95532564243?pwd=SkFJUlJHZDBRT1BtRHdaZ0NPZlBqdz09', '6512bd43d9caa6e02c990b0a82652dca', 'A', 'cramos', '2021-04-20 11:20:38', 'cramos', '2021-04-21 11:07:35'),
+(12, 'ENCUESTA PRUEBA 8', '2021-04-21 15:00:29', '2021-04-21 16:30:00', 'https://zoom.us/j/91271627913?pwd=SngzcXVzTzRxWnNaa0J1eEpnU0xiQT09', 'c20ad4d76fe97759aa27a0c99bff6710', 'A', 'cramos', '2021-04-21 11:59:20', 'cramos', '2021-04-22 03:26:24');
 
 -- --------------------------------------------------------
 
@@ -749,26 +745,18 @@ INSERT INTO `respuestas` (`id`, `opcion_id`, `encuestado_id`, `estado`, `creador
 (85, 72, 26, 'A', NULL, '2021-04-09 15:52:30', NULL, NULL),
 (89, 55, 24, 'A', NULL, '2021-04-09 16:01:57', NULL, NULL),
 (90, 60, 24, 'A', NULL, '2021-04-09 16:01:57', NULL, NULL),
-(91, 73, 24, 'A', NULL, '2021-04-09 16:01:57', NULL, NULL),
 (92, 56, 25, 'A', NULL, '2021-04-09 16:02:08', NULL, NULL),
 (93, 60, 25, 'A', NULL, '2021-04-09 16:02:08', NULL, NULL),
 (94, 72, 25, 'A', NULL, '2021-04-09 16:02:08', NULL, NULL),
-(95, 55, 24, 'A', NULL, '2021-04-09 16:03:17', NULL, NULL),
 (96, 58, 24, 'A', NULL, '2021-04-09 16:03:17', NULL, NULL),
-(97, 73, 24, 'A', NULL, '2021-04-09 16:03:17', NULL, NULL),
 (98, 52, 24, 'A', NULL, '2021-04-09 16:03:37', NULL, NULL),
-(99, 58, 24, 'A', NULL, '2021-04-09 16:03:37', NULL, NULL),
-(100, 73, 24, 'A', NULL, '2021-04-09 16:03:37', NULL, NULL),
 (101, 53, 24, 'A', NULL, '2021-04-09 16:03:53', NULL, NULL),
 (102, 57, 24, 'A', NULL, '2021-04-09 16:03:53', NULL, NULL),
 (103, 73, 24, 'A', NULL, '2021-04-09 16:03:53', NULL, NULL),
 (107, 55, 26, 'A', NULL, '2021-04-09 16:05:18', NULL, NULL),
 (108, 58, 26, 'A', NULL, '2021-04-09 16:05:18', NULL, NULL),
-(109, 72, 26, 'A', NULL, '2021-04-09 16:05:18', NULL, NULL),
 (111, 78, 35, 'A', NULL, '2021-04-15 12:09:16', NULL, NULL),
 (112, 75, 33, 'A', 'cramos', '2021-04-16 12:23:50', NULL, NULL),
-(113, 62, 33, 'A', 'cramos', '2021-04-16 12:23:50', NULL, NULL),
-(114, 75, 33, 'A', 'cramos', '2021-04-16 16:34:31', NULL, NULL),
 (115, 62, 33, 'A', 'cramos', '2021-04-16 16:34:31', NULL, NULL),
 (116, 82, 38, 'A', NULL, '2021-04-17 09:07:02', NULL, NULL),
 (117, 36, 12, 'A', NULL, '2021-04-19 08:43:21', NULL, NULL),
@@ -778,7 +766,7 @@ INSERT INTO `respuestas` (`id`, `opcion_id`, `encuestado_id`, `estado`, `creador
 (121, 50, 12, 'A', NULL, '2021-04-19 08:43:21', NULL, NULL),
 (122, 87, 42, 'A', NULL, '2021-04-21 10:32:51', NULL, NULL),
 (123, 91, 47, 'A', NULL, '2021-04-21 16:10:51', NULL, NULL),
-(124, 91, 47, 'A', NULL, '2021-04-21 16:11:02', NULL, NULL);
+(125, 91, 52, 'A', NULL, '2021-04-21 16:24:25', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -911,6 +899,7 @@ ALTER TABLE `preguntas`
 --
 ALTER TABLE `respuestas`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ux_opcion_encuestado` (`opcion_id`,`encuestado_id`),
   ADD KEY `fk_respuestas_opciones1_idx` (`opcion_id`),
   ADD KEY `fk_respuestas_encuestados1_idx` (`encuestado_id`);
 
@@ -1002,7 +991,7 @@ ALTER TABLE `preguntas`
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
