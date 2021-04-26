@@ -59,7 +59,6 @@ class EncuestasController extends AppController {
 	public function login_video($hash = null){
 	    $this->loadModel('Encuestado');
 	    if ($this->request->is('post')) {
-	        //pr($this->request->data);
 	        $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
 	        $options = array('conditions' => array('Encuestado.telefono' => $this->request->data['Encuestado']['telefono'],
 	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
@@ -70,7 +69,7 @@ class EncuestasController extends AppController {
 	        
 	        $encuestado = $this->Encuestado->find('first', $options);
 	        
-	        if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
+	        if (!empty($encuestado) && $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
 	            $fecha_fin = date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin']));
 	            $this->Flash->error(__("Encuesta finalizada: {$fecha_fin} "));
 	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'login_video', $this->request->data['Encuesta']['hash']));
@@ -85,7 +84,7 @@ class EncuestasController extends AppController {
 	            $this->Session->write('Encuestado', $this->request->data['Encuestado']);
 	            return $this->redirect(array('action' => 'enlace_video'));
 	        } else {
-	            $this->Flash->error(__('Tu telefono o password fue incorrecto.'));
+	            $this->Flash->error(__('Tu telefono o password fue incorrecto o ya fue encuestado.'));
 	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'login_video', $this->request->data['Encuesta']['hash']));
 	        }
 	    }
