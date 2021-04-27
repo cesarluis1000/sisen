@@ -51,6 +51,23 @@ class UsersController extends AppController {
 	
 	public function login() {
 	    if ($this->request->is('post')) {
+	        
+	        define('CLAVE', Configure::read('Recaptcha.SecretKey'));
+	        $cu = curl_init();
+	        curl_setopt($cu, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+	        curl_setopt($cu, CURLOPT_POST, 1);
+	        curl_setopt($cu, CURLOPT_POSTFIELDS, http_build_query(array('secret' => CLAVE, 'response' => $this->request->data['User']['token'])));
+	        curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
+	        $response = curl_exec($cu);
+	        curl_close($cu);
+	        
+	        $datos = json_decode($response, true);
+	        
+	        if($datos['success'] == false || $datos['score'] < 0.5){
+	            $this->Flash->error(__('Error de validacion captcha.'));
+	            return $this->redirect(array('controller' => 'Users', 'action' => 'login'));
+	        }
+	        
 	        if ($this->Auth->login()) {
 	            return $this->redirect($this->Auth->redirectUrl());
 	        }
