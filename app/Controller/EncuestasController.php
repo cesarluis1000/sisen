@@ -60,7 +60,7 @@ class EncuestasController extends AppController {
 	    $this->loadModel('Encuestado');
 	    if ($this->request->is('post')) {
 	        
-	        define('CLAVE', '6Ldh1bsaAAAAAEXEBSDWoUrP5l2s5RCU8WvreAeq');
+	        define('CLAVE', Configure::read('Recaptcha.SecretKey'));
 	        $cu = curl_init();
 	        curl_setopt($cu, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
 	        curl_setopt($cu, CURLOPT_POST, 1);

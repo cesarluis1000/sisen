@@ -17,6 +17,13 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+//Recaptcha Config
+//localhost
+//Configure::write('Recaptcha.SiteKey','6LdTqLsaAAAAAEQvthJ9VMzFKxUcNUieeYV8oywM');
+//Configure::write('Recaptcha.SecretKey','6LdTqLsaAAAAAF4_Ce8Bd9YdmFSdjuDZWMnv684I');
+//sisen.com
+Configure::write('Recaptcha.SiteKey','6Ldh1bsaAAAAAF-m3qQDJAF6YZmqJXCsKiCTyTrq');
+Configure::write('Recaptcha.SecretKey','6Ldh1bsaAAAAAEXEBSDWoUrP5l2s5RCU8WvreAeq');
 
 //setLocale(LC_ALL, 'deu');
 //Configure::write('Config.language', 'deu');

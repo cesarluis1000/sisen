@@ -1,10 +1,10 @@
-<script src="https://www.google.com/recaptcha/api.js?render=6Ldh1bsaAAAAAF-m3qQDJAF6YZmqJXCsKiCTyTrq"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<?php echo Configure::read('Recaptcha.SiteKey'); ?>"></script>
 
    <script>
     $(document).ready(function() {
         $('#btLoginVideo').click(function(){
        	 	grecaptcha.ready(function() {
-                 grecaptcha.execute('6Ldh1bsaAAAAAF-m3qQDJAF6YZmqJXCsKiCTyTrq', {
+                 grecaptcha.execute('<?php echo Configure::read('Recaptcha.SiteKey'); ?>', {
                      action: 'validarUsuario'
                  }).then(function(token) {
                	  $('#EncuestadoToken').val(token);
