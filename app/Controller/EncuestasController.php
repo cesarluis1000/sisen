@@ -59,6 +59,23 @@ class EncuestasController extends AppController {
 	public function login_video($hash = null){
 	    $this->loadModel('Encuestado');
 	    if ($this->request->is('post')) {
+	        
+	        define('CLAVE', '6Ldh1bsaAAAAAEXEBSDWoUrP5l2s5RCU8WvreAeq');
+	        $cu = curl_init();
+	        curl_setopt($cu, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+	        curl_setopt($cu, CURLOPT_POST, 1);
+	        curl_setopt($cu, CURLOPT_POSTFIELDS, http_build_query(array('secret' => CLAVE, 'response' => $this->request->data['Encuestado']['token'])));
+	        curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
+	        $response = curl_exec($cu);
+	        curl_close($cu);
+	        
+	        $datos = json_decode($response, true);
+	        
+	        if($datos['success'] == false || $datos['score'] < 0.5){
+	            $this->Flash->error(__('Error de validacion captcha.'));
+	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'login_video', $this->request->data['Encuesta']['hash']));
+	        }
+	        
 	        $this->Encuestado->unBindModel(array('hasMany'=>array('Respuesta')));
 	        $options = array('conditions' => array('Encuestado.telefono' => $this->request->data['Encuestado']['telefono'],
 	                                               'Encuestado.dni' => $this->request->data['Encuestado']['password'],
