@@ -86,7 +86,7 @@ class EncuestasController extends AppController {
 	        
 	        $encuestado = $this->Encuestado->find('first', $options);
 	        
-	        if (!empty($encuestado) && $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
+	        if (!empty($encuestado) && $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d H:i:s")){
 	            $fecha_fin = date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin']));
 	            $this->Flash->error(__("Encuesta finalizada: {$fecha_fin} "));
 	            return $this->redirect(array('controller' => 'Encuestas', 'action' => 'login_video', $this->request->data['Encuesta']['hash']));

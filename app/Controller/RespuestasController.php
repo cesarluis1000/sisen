@@ -60,7 +60,7 @@ class RespuestasController extends AppController {
 		$this->Encuestado->recursive = 0;
 		$encuestado = $this->Encuestado->findById($encuestadoId);
 		
-		if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
+		if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d H:i:s")){
 		    $fecha_fin = date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin']));
 		    $this->Flash->error(__("Encuesta finalizada: {$fecha_fin} "));
 		    return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
@@ -115,7 +115,7 @@ class RespuestasController extends AppController {
 	    $options = array('conditions' => array('Encuestado.hash' => $hash));
 	    $encuestado = $this->Encuestado->find('first', $options);
 	    
-	    if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d h:i:s")){
+	    if ( $encuestado['Encuesta']['fecha_fin'] < date("Y-m-d H:i:s")){
 	        $fecha_fin = date("Y-m-d g:i a", strtotime($encuestado['Encuesta']['fecha_fin']));
 	        $this->Flash->error(__("Encuesta finalizada: {$fecha_fin} "));
 	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
