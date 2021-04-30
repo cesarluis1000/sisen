@@ -66,7 +66,7 @@ class RespuestasController extends AppController {
 		    return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
 		}
 		
-		if ($encuestado['Encuestado']['estado'] =='E'){
+		if (in_array($encuestado['Encuestado']['estado'],array('E','L'))){
 		    $this->Flash->error(__("Usuario ya encuestado"));
 		    return $this->redirect(array('controller' => 'Encuestados', 'action' => 'view', $encuestadoId));
 		}
@@ -79,11 +79,18 @@ class RespuestasController extends AppController {
 	            $datasource->begin();
 	            
 	            $this->Encuestado->id=$encuestadoId;
-	            if (!$this->Encuestado->saveField("estado","E")){
-	                throw new Exception('Error al registrar la encuesta');
-	            }
 	            
 	            $respuestas = Set::extract('/Respuesta[opcion_id>1]', $this->request->data);
+	            if (!empty($respuestas)){
+	                if (!$this->Encuestado->saveField("estado","E")){
+	                    throw new Exception('Error al registrar la encuesta');
+	                }
+	            }else{
+	                if (!$this->Encuestado->saveField("estado","L")){
+	                    throw new Exception('Error al registrar la encuesta');
+	                }
+	            }
+	            
 	            if (!empty($respuestas)){
 	                $this->Respuesta->create();
 	                if (!$this->Respuesta->saveMany($respuestas)) {
@@ -121,7 +128,7 @@ class RespuestasController extends AppController {
 	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
 	    }
 	    
-	    if ($encuestado['Encuestado']['estado'] =='E'){
+	    if (in_array($encuestado['Encuestado']['estado'],array('E','L'))){
 	        $this->Flash->error(__("Usuario ya encuestado"));
 	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
 	    }
@@ -136,11 +143,18 @@ class RespuestasController extends AppController {
 	            $datasource->begin();
 	        
                 $this->Encuestado->id=$encuestadoId;
-                if (!$this->Encuestado->saveField("estado","E")){
-                    throw new Exception('Error al registrar la encuesta');
-                }
                 
                 $respuestas = Set::extract('/Respuesta[opcion_id>1]', $this->request->data);
+                if (!empty($respuestas)){
+                    if (!$this->Encuestado->saveField("estado","E")){
+                        throw new Exception('Error al registrar la encuesta');
+                    }
+                }else{
+                    if (!$this->Encuestado->saveField("estado","L")){
+                        throw new Exception('Error al registrar la encuesta');
+                    }
+                }
+                
                 if (!empty($respuestas)){
         	        $this->Respuesta->create();
         	        if (!$this->Respuesta->saveMany($respuestas)) {

@@ -146,9 +146,14 @@ class EncuestasController extends AppController {
 	    
 	    $this->Encuestado->recursive = -1;
 	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
-	                                           'Encuestado.estado'=>'E'));
+	        'Encuestado.estado'=>'E'));
 	    $nro_encuestados = $this->Encuestado->find('count', $options);
 	    //pr($nro_encuestados);
+	    
+	    $this->Encuestado->recursive = -1;
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
+	        'Encuestado.estado'=>'L'));
+	    $nro_blanco = $this->Encuestado->find('count', $options);
 	    
 	    $this->Encuestado->recursive = -1;
 	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
@@ -213,13 +218,13 @@ class EncuestasController extends AppController {
 	        }
 	        
 	        //pr($a_opciones);
-	        $i_quorum = $nro_encuestados + $nro_abstencion;
-	        $i_blanco = $nro_encuestados - $i_respuesta_pregunta;
+	        $i_quorum = $nro_encuestados + $nro_blanco + $nro_abstencion;
+	        $i_blanco = $nro_blanco + $nro_abstencion;
 	        $config["data"] = [
 	                           "labels" => $a_opciones,
                 	           "datasets" => [
                     	                   [
-                    	                       "label" => "Total:{$i_quorum}, Votos:{$i_respuesta_pregunta}, Abstenciones:{$nro_abstencion}, Blanco:{$i_blanco} => {$pregunta['Pregunta']['nombre']}",
+                    	                       "label" => "Total:{$i_quorum}, Votos:{$nro_encuestados}, Blanco:{$i_blanco} => {$pregunta['Pregunta']['nombre']}",
                             	                "data" => $a_respuestas,
                             	                "backgroundColor" => $a_backgroundColor,
                             	                "borderColor" => $a_borderColor,

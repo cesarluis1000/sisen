@@ -71,7 +71,14 @@ class AppController extends Controller {
 		$this->set('a_estados',$this->a_estados);
 		$this->a_correo_enviado = array('Y'=>'Si','N'=>'No');
 		$this->set('a_correo_enviado',$this->a_correo_enviado);
-		$this->a_estados_encuestado = array('A'=>'Activo','D'=>'Desactivo','E'=>'Encuestado','B'=>'Abstencion');
+		
+		$this->a_estados_encuestado = array(
+		    'A'=>'Activo',
+		    'D'=>'Desactivo',
+		    'E'=>'Encuestado',
+		    'B'=>'Blanco - Abstencion',
+		    'L'=>'Blanco');
+		
 		$this->set('a_estados_encuestado',$this->a_estados_encuestado);
 		$this->a_nro_respuesta = array('1'=>'Una','2'=>'Dos');
 		$this->set('a_nro_respuesta',$this->a_nro_respuesta);
