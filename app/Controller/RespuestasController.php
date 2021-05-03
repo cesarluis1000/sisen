@@ -133,6 +133,11 @@ class RespuestasController extends AppController {
 	        return $this->redirect(array('controller' => 'Encuestados', 'action' => 'encuestado', $hash));
 	    }
 	    
+	    if ($encuestado['Encuestado']['estado'] != 'B'){
+	        $this->Flash->error(__("Iniciar el video zoom"));
+	        return $this->redirect(array('controller' => 'Encuestas', 'action' => 'login_video', $encuestado['Encuesta']['hash']));
+	    }
+	    
 	    $encuestadoId = $encuestado['Encuestado']['id'];
 	    
 	    if ($this->request->is('post')) {
