@@ -240,6 +240,116 @@ class EncuestasController extends AppController {
 
 	    
 	}
+	
+	public function impresion($id = null) {
+	    $this->layout = 'impresion';
+	    $this->loadModel('Encuestado');
+	    $this->loadModel('Pregunta');
+	    $this->loadModel('Respuesta');
+	    
+	    $this->Encuesta->recursive = -1;
+	    $options = array('conditions' => array('Encuesta.' . $this->Encuesta->primaryKey => $id));
+	    $encuesta = $this->Encuesta->find('first', $options);
+	    //pr($encuesta);
+	    
+	    $this->Encuestado->recursive = -1;
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
+	        'Encuestado.estado'=>'E'));
+	    $nro_encuestados = $this->Encuestado->find('count', $options);
+	    //pr($nro_encuestados);
+	    
+	    $this->Encuestado->recursive = -1;
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
+	        'Encuestado.estado'=>'L'));
+	    $nro_blanco = $this->Encuestado->find('count', $options);
+	    
+	    $this->Encuestado->recursive = -1;
+	    $options = array('conditions' => array('Encuestado.encuesta_id' => $id,
+	        'Encuestado.estado'=>'B'));
+	    $nro_abstencion = $this->Encuestado->find('count', $options);
+	    //pr($nro_abstencion);
+	    
+	    $this->Pregunta->unBindModel(array('belongsTo'=>array('Encuesta')));
+	    $options = array('conditions' => array('Pregunta.encuesta_id' => $id));
+	    $preguntas = $this->Pregunta->find('all',$options);
+	    //pr($preguntas);
+	    
+	    $config = [
+	        "type" => "bar",
+	        "options" => [
+	            "legend" => [
+	                "display" => true,
+	                "labels" => [
+	                    "fontSize" => 18,
+	                    "fontStyle" => "italic",
+	                    "fontColor" => 'blue',
+	                ]
+	                
+	            ],
+	            
+	            "scales" => [
+	                "yAxes" => [
+	                    [
+	                        "ticks" => [
+	                            "beginAtZero" => true,
+	                            "fontSize" => 14,
+	                            "stepSize" => 1,
+	                        ]
+	                    ]
+	                ],
+	                
+	                "xAxes" => [
+	                    [
+	                        "ticks" => [
+	                            "fontSize" => 12,
+	                        ]
+	                    ]
+	                ]
+	            ]
+	        ]
+	    ];
+	    
+	    foreach ($preguntas as $i => $pregunta){
+	        
+	        $a_opciones = null;
+	        $a_respuestas = null;
+	        $a_backgroundColor = null;
+	        $a_borderColor = null;
+	        $i_respuesta_pregunta =0;
+	        $i_blanco =0;
+	        foreach ($pregunta['Opcion'] as $j => $opcion){
+	            $a_opciones[] = $opcion['nombre'];
+	            $options = array('conditions' => array('Respuesta.opcion_id' => $opcion['id']));
+	            $i_respuestas_opcion = $this->Respuesta->find('count',$options);
+	            $i_respuesta_pregunta += $i_respuestas_opcion;
+	            $a_respuestas[] = $i_respuestas_opcion;
+	            $a_backgroundColor[] = $this->a_backgroundColor[$j];
+	            $a_borderColor[] = $this->a_borderColor[$j];
+	        }
+	        
+	        //pr($a_opciones);
+	        $i_quorum = $nro_encuestados + $nro_blanco + $nro_abstencion;
+	        $i_blanco = $nro_blanco + $nro_abstencion;
+	        $config["data"] = [
+	            "labels" => $a_opciones,
+	            "datasets" => [
+	                [
+	                    "label" => "Total:{$i_quorum}, Votos:{$nro_encuestados}, Blanco:{$i_blanco} => {$pregunta['Pregunta']['nombre']}",
+	                    "data" => $a_respuestas,
+	                    "backgroundColor" => $a_backgroundColor,
+	                    "borderColor" => $a_borderColor,
+	                    "borderWidth" => 2
+	                    ]
+	                    ]
+	                    ];
+	        
+	        $preguntas[$i]['config'] = $config;
+	    }
+	    
+	    $this->set(compact('encuesta','preguntas'));
+	    
+	}
+	
 /**
  * index method
  *

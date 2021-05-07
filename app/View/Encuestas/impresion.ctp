@@ -1,18 +1,38 @@
-	
+<style>
+<!--
+@media print {
+  #btnPrint {
+      display: none;
+  }
+  #header {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.responsive {
+  width: 300px;
+}
+-->
+</style>
+<div id="header">		
+	<?php    	
+	echo $this->Html->image('banner2.png', ['alt' => 'banner', 'class' => 'responsive'])
+	?>
+</div>
+<br>
 <h3><?php echo $encuesta['Encuesta']['nombre'] ?></h3>	
 <br>
 <?php
-echo $this->Html->link(
+echo $this->Form->button(
         $this->Html->tag('span', '', array('class' => 'fa fa-print')).__(' Imprimir'), 
-    array('controller' => 'Encuestas', 'action' => 'impresion', $encuesta['Encuesta']['id']), 
-        array('class' => 'btn btn-default btn-sm','target' => '_blank','escape' => false)
+    array('type' => 'button','id'=>'btnPrint','class'=>'btn btn-default','onclick' => 'window.print()')
     );
 ?>
 <br>
-<br>
 <?php foreach ($preguntas as $i => $pregunta): ?>
 	
-    <div class="col-md-8">
+    <div class="col-md-7">
     	<div style="width:95%;">
     		<canvas id="<?php echo 'pregunta'.$i; ?>"></canvas>
     	</div>        	
@@ -24,6 +44,3 @@ echo $this->Html->link(
     </script>
 	
 <?php endforeach;?>
-
-
-
