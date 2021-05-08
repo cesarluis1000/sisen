@@ -95,8 +95,21 @@ class EncuestasController extends AppController {
 	        $nro_encuestado = $this->Encuestado->find('count', $options);
 	        
 	        if ($nro_encuestado > 0) {
-	            $this->Encuestado->id=$encuestado['Encuestado']['id'];
-	            $this->Encuestado->saveField("estado","B");
+	            
+	            $options2 = array('conditions' => array(
+	                'Encuestado.telefono' => $this->request->data['Encuestado']['telefono'],
+	                'Encuestado.dni' => $this->request->data['Encuestado']['password'],
+	                //'Encuesta.hash' => $this->request->data['Encuesta']['hash'],
+	                'Encuesta.estado' => 'A',
+	                'Encuestado.estado' => array('A','B')
+	            ));
+	            
+	            $encuestadoXencuestas = $this->Encuestado->find('all', $options2);
+	            //Actualización del estado Blanco - Abstencion para el encuestado en las demas encuestas
+	            foreach ($encuestadoXencuestas as $encuestadoRow){
+	                $this->Encuestado->id=$encuestadoRow['Encuestado']['id'];
+	                $this->Encuestado->saveField("estado","B");
+	            }
 	            $this->Session->write('Encuesta', $this->request->data['Encuesta']);
 	            $this->Session->write('Encuestado', $this->request->data['Encuestado']);
 	            return $this->redirect(array('action' => 'enlace_video'));
